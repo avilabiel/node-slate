@@ -1,171 +1,33 @@
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the Brydge API! You can use our API to access Brydge API endpoints, which can process payments, create digital banks and more easily.
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+We have language bindings only in Javascript (yet)! You can view code examples in the dark area to the right.
 
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
+***We want to build bridges, not walls!***
 
 # Authentication
 
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```bash
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
+> To authorize, you must to add the api_key on every request:
 
 ```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
+const response = await axios({
+   url: "https://api.brydge.com.br/v1/test",
+   method: "get",
+   headers: {
+      api_key: <API_KEY_FROM_YOUR_COMPANY>
+   }
+});
 ```
 
-> Make sure to replace `meowmeowmeow` with your API key.
+> Make sure to replace `<API_KEY_FROM_YOUR_COMPANY>` with your API key.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](https://example.com/developers).
+Brydge uses API keys to allow access to the API. Please contact us to get your API Key.
 
 Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
-`Authorization: meowmeowmeow`
+`api_key: <API_KEY_FROM_YOUR_COMPANY>`
 
 <aside class=notice>
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>API_KEY_FROM_YOUR_COMPANY</code> with your personal API key.
 </aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```bash
-curl "https://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-   {
-      "id":         1,
-      "name":       "Fluffums",
-      "breed":      "calico",
-      "fluffiness": 6,
-      "cuteness":   7
-   },
-   {
-      "id":         2,
-      "name":       "Max",
-      "breed":      "unknown",
-      "fluffiness": 5,
-      "cuteness":   10
-   }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET https://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class=success>
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```bash
-curl "https://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-   "id":         2,
-   "name":       "Max",
-   "breed":      "unknown",
-   "fluffiness": 5,
-   "cuteness":   10
-}
-```
-
-This endpoint retrieves a specific kitten.
-
-<aside class=warning>
-Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.
-</aside>
-
-### HTTP Request (with ID)
-
-`GET https://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
