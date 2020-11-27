@@ -10,6 +10,9 @@ includes:
    - main
    - customers
    - sellers
+   - payments
+   - balance
+   - withdrawals
    - _errors
    - models
 
