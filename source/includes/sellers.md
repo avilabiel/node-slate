@@ -803,10 +803,10 @@ This endpoint updates information for a specific seller's owner.
 #### HTTP Request
 
 **Sandbox**
-`GET https://register.brydge.com.br/v1/network/:networkToken/seller/:sellerToken/owner/:ownerToken`
+`PUT https://register.brydge.com.br/v1/network/:networkToken/seller/:sellerToken/owner/:ownerToken`
 
 **Production**
-`GET https://register.brydge.io/v1/network/:networkToken/seller/:sellerToken/owner/:ownerToken`
+`PUT https://register.brydge.io/v1/network/:networkToken/seller/:sellerToken/owner/:ownerToken`
 
 #### Query Parameters
 
@@ -814,28 +814,70 @@ None.
 
 ## Documents
 
-## Approval
-Only approved sellers can receive and make payments on Brydge API. For a seller to be approved, the following information must be sent:
+### Upload a Document
 
-1. Seller's Data
-2. Seller's Phone
-3. Seller's Address
-4. Seller's Owner
-5. Seller's Documents
-6. Seller's Owner Documents
+```javascript
+const networkToken = "9460246d-3c0e-4318-8874-5f7acca63efc";
+const customerToken = "382184a-382d-hsa3-4882-849c932jduw";
+const brydgeSandboxURL = "https://register.brydge.com.br";
+const api = axios. axios.create({
+    baseURL: brydgeSandboxURL,
+});
 
-Only with this information is it possible for a seller to be approved.
+const response = await axios.post(
+  `/v1/network/${networkToken}/customer/${customerToken}/credit-card`, 
+  {
+	  card: {
+		  holder_name: "Test Name",
+		  expiration_month: "02",
+	  	expiration_year: "2028",
+		  card_number: "123412341234",
+		  security_code: "022"
+    }
+  }, {
+    headers: {
+      api_key: <API_KEY_FROM_YOUR_COMPANY>
+    }
+  }
+);
+```
 
-This endpoint requests the approval from KYC process for a new seller.
+> The above command returns JSON structured like this:
+
+```json
+{
+  "success": true,
+  "card": {
+    "last4_digits": "************3308",
+    "token": "b44a8cd6-dd42-491e-9f52-671ef5d1ac2e",
+    "card_brand": "MasterCard",
+    "updatedAt": "2020-11-27T19:10:37.198Z",
+    "createdAt": "2020-11-27T19:10:37.198Z"
+  }
+}
+```
+
+This endpoints uploads a document to a Seller. This process is important for KYC. Only approved Sellers can receive and make payments.
 
 <aside class=notice>
-This KYC process is very important to protect us against money laundry and some legal processes.
+Use enctype="multipart/form-data"
 </aside>
 
-<aside class=warning>
-This process is <strong>asynchronous</strong> and it could take until <strong>3 business days to be approved or rejected</strong>.
-</aside>
+#### HTTP Request
 
+**Sandbox**
+`POST https://register.brydge.com.br/v1/network/:networkToken/customer/:customerToken/credit-card`
+
+**Production**
+`POST https://register.brydge.io/v1/network/:networkToken/customer/:customerToken/credit-card`
+
+#### Query Parameters
+
+None.
+
+## Approval
+
+### Create an Approval Request
 ```javascript
 const networkToken = "9460246d-3c0e-4318-8874-5f7acca63efc";
 const sellerToken = "7fc5e37f-5760-4848-bb9f-6a3e40977903";
@@ -864,6 +906,27 @@ const response = await axios.post(`/v1/network/${networkToken}/seller/${sellerTo
   }
 }
 ```
+
+Only approved sellers can receive and make payments on Brydge API. For a seller to be approved, the following information must be sent:
+
+1. Seller's Data
+2. Seller's Phone
+3. Seller's Address
+4. Seller's Owner
+5. Seller's Documents
+6. Seller's Owner Documents
+
+Only with this information is it possible for a seller to be approved.
+
+This endpoint requests the approval from KYC process for a new seller.
+
+<aside class=notice>
+This KYC process is very important to protect us against money laundry and some legal processes.
+</aside>
+
+<aside class=warning>
+This process is <strong>asynchronous</strong> and it could take until <strong>3 business days to be approved or rejected</strong>.
+</aside>
 
 #### HTTP Request
 

@@ -2,7 +2,6 @@
 
 ## Credit Card
 ### Payment by Tokens
-Every entity created by Brydge API generates a token. It's safer to work with tokens instead of ids. In this endpoint, we use the tokens from the entities generated previously by the client to **make payments**.
 
 ```javascript
 const networkToken = "9460246d-3c0e-4318-8874-5f7acca63efc";
@@ -68,6 +67,8 @@ const response = await axios.post(
   }
 }
 ```
+
+Every entity created by Brydge API generates a token. It's safer to work with tokens instead of ids. In this endpoint, we use the tokens from the entities generated previously by the client to **make payments**.
 
 #### HTTP Request
 
@@ -180,36 +181,6 @@ const response = await axios.post(
 None.
 
 ### Payment with Split - Amount
-This endpoint makes a payment and split the money to multiple digital accounts like multiple sellers and networks.
-
-<aside class=notice>
-Brydge will charge fees for every payment that has been made on Brydge API. However, Brydge API calculates the proper amounts that should be split right after Brydge has charged the fees.
-
-Ex: 25 R$ split to two Sellers. Brydge got R$ 1. Now we have R$ 24. But, the split rules say:
-
-Receivers: [ 
-    { 
-        token: "e84ad069-ff20-4952-bf8d-40e9da9e1d59", 
-        type: seller, 
-        amount: 20
-    }, 
-    { 
-        token: "9460246d-3c0e-4318-8874-5f7acca63efb", 
-        type: company_network, 
-        amount: 5
-    }
-]
-
-Here, we cannot split R$ 20 to Seller 1 and R$ 5 to Seller 2. Then, Brydge API gets the percentages from amounts and split properly. The final split is:
-
-Seller 1 -> R$ 19.20
-Seller 2 -> R$ 4.80
-= R$ 24
-</aside>
-
-<aside class=warning>
-To not split the paid amount, just remove the attribute "Receivers"
-</aside>
 
 ```javascript
 const networkToken = "9460246d-3c0e-4318-8874-5f7acca63efc";
@@ -287,6 +258,37 @@ const response = await axios.post(
   }
 }
 ```
+
+This endpoint makes a payment and split the money to multiple digital accounts like multiple sellers and networks.
+
+<aside class=notice>
+Brydge will charge fees for every payment that has been made on Brydge API. However, Brydge API calculates the proper amounts that should be split right after Brydge has charged the fees.
+
+Ex: 25 R$ split to two Sellers. Brydge got R$ 1. Now we have R$ 24. But, the split rules say:
+
+Receivers: [ 
+    { 
+        token: "e84ad069-ff20-4952-bf8d-40e9da9e1d59", 
+        type: seller, 
+        amount: 20
+    }, 
+    { 
+        token: "9460246d-3c0e-4318-8874-5f7acca63efb", 
+        type: company_network, 
+        amount: 5
+    }
+]
+
+Here, we cannot split R$ 20 to Seller 1 and R$ 5 to Seller 2. Then, Brydge API gets the percentages from amounts and split properly. The final split is:
+
+Seller 1 -> R$ 19.20
+Seller 2 -> R$ 4.80
+= R$ 24
+</aside>
+
+<aside class=warning>
+To not split the paid amount, just remove the attribute "Receivers"
+</aside>
 
 #### HTTP Request
 

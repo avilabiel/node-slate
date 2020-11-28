@@ -15,6 +15,7 @@ includes:
    - sellers
    - payments
    - balance
+   - banks
    - withdrawals
    - _errors
    - models

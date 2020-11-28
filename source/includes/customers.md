@@ -628,24 +628,7 @@ None.
 
 ## Approval
 
-Only approved customers can make payments on Brydge API. For a customer to be approved, the following information must be sent:
-
-1. Customer's data
-2. Phones
-3. Address
-
-Only with this information is it possible for a customer to be approved.
-
-This endpoint requests the approval from KYC process for a new customer.
-
-<aside class=notice>
-This KYC process is very important to protect us against money laundry and some legal processes.
-</aside>
-
-<aside class=warning>
-This process is <strong>synchronous</strong> and it's been rare to see an unapproved customer.
-</aside>
-
+### Create an Approval Request
 ```javascript
 const networkToken = "9460246d-3c0e-4318-8874-5f7acca63efc";
 const customerToken = "d881ba21-92ad-4837-a672-4821ffc83b5c";
@@ -675,6 +658,24 @@ const response = await axios.post(`/v1/network/${networkToken}/customer/${custom
 }
 ```
 
+Only approved customers can make payments on Brydge API. For a customer to be approved, the following information must be sent:
+
+1. Customer's data
+2. Phones
+3. Address
+
+Only with this information is it possible for a customer to be approved.
+
+This endpoint requests the approval from KYC process for a new customer.
+
+<aside class=notice>
+This KYC process is very important to protect us against money laundry and some legal processes.
+</aside>
+
+<aside class=warning>
+This process is <strong>synchronous</strong> and it's been rare to see an unapproved customer.
+</aside>
+
 #### HTTP Request
 
 **Sandbox**
@@ -695,10 +696,7 @@ We follow all security protocols like PCI-DDS.
 </aside>
 
 ### Create a Credit Card
-
-<aside class=warning>
-The Customer must be approved to use this endpoint.
-</aside>
+This endpoint creates a new customer's credit card.
 
 ```javascript
 const networkToken = "9460246d-3c0e-4318-8874-5f7acca63efc";
@@ -741,7 +739,10 @@ const response = await axios.post(
 }
 ```
 
-This endpoint creates a new customer's credit card.
+<aside class=warning>
+The Customer must be approved to use this endpoint.
+</aside>
+
 
 #### HTTP Request
 
@@ -853,10 +854,7 @@ This endpoint takes all customer's credit cards.
 None.
 
 ### Delete a Credit Card
-
-<aside class=warning>
-The Customer must be approved to use this endpoint.
-</aside>
+This endpoint deletes a specific customer's credit card.
 
 ```javascript
 const networkToken = "9460246d-3c0e-4318-8874-5f7acca63efc";
@@ -885,7 +883,9 @@ const response = await axios.delete(
 }
 ```
 
-This endpoint deletes a specific customer's credit card.
+<aside class=warning>
+The Customer must be approved to use this endpoint.
+</aside>
 
 #### HTTP Request
 
