@@ -812,6 +812,8 @@ This endpoint updates information for a specific seller's owner.
 
 None.
 
+## Documents
+
 ## Approval
 Only approved sellers can receive and make payments on Brydge API. For a seller to be approved, the following information must be sent:
 
@@ -874,3 +876,16 @@ const response = await axios.post(`/v1/network/${networkToken}/seller/${sellerTo
 #### Query Parameters
 
 None.
+
+## Bank Accounts
+Sellers can withdrawal money since they receive payments. For that, they need to create bank accounts.
+
+<aside class=warning>
+The Seller must be approved to use this endpoint.
+</aside>
+
+### Create a Bank Account
+
+### Get all Bank Accounts
+
+### Delete Bank Account

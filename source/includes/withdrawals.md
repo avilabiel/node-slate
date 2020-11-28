@@ -49,7 +49,7 @@ The seller or network <strong>must</strong> have balance to make the withdrawal.
 </aside>
 
 <aside class=warning>
-The request could be totally processed in 3 business days.
+The request could be totally processed in <strong>3 business days</strong>.
 </aside>
 
 #### HTTP Request

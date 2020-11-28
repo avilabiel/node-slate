@@ -81,8 +81,8 @@ const response = await axios.post(
 
 None.
 
-### Payment by Customer Data
-This endpoint makes a payment with a Credit Card and it doesn't require a Customer Token, it requests all the Customer's data at the same endpoint.
+### Checkout Payment
+This endpoint makes a payment with a Credit Card and it doesn't require a Customer Token or Card Token, it requests all the data at the same endpoint.
 
 ```javascript
 const networkToken = "9460246d-3c0e-4318-8874-5f7acca63efc";
@@ -95,32 +95,32 @@ const response = await axios.post(
     `/v1/network/${networkToken}/payment/credit-card`, { 
     Payment: { 
 		Card: { 
-		    token: "b44a8cd6-dd42-491e-9f52-671ef5d1ac2e"
+		    ...,
 		},
 		amount: 25, 
 		currency: "BRL",
 		description: "Pagamento de ticket: { number: 123456 }"
  	}, 
 	Customer: {
-        cpf: "41235235214",
-		first_name: "Rafael",
-        last_name: "Silva",
-        email: "teste@gmail.com",
-        birthdate: "1985-03-21T00:00:00.000Z",
-        phone: {
-            area_code: 13,
-            country_code:55,
-            number: "2583564"
-        },
-        address: {
-            line1: "Av Americas, 500",
-            line2: "Citta América",
-            neighborhood: "Barra da Tijuca",
-            city: "Rio de Janeiro",
-            state: "RJ",
-            zip_code: "22845046",
-            country_code: "BR"
-        }
+    cpf: "41235235214",
+    first_name: "Rafael",
+    last_name: "Silva",
+    email: "teste@gmail.com",
+    birthdate: "1985-03-21T00:00:00.000Z",
+    phone: {
+        area_code: 13,
+        country_code:55,
+        number: "2583564"
+    },
+    address: {
+        line1: "Av Americas, 500",
+        line2: "Citta América",
+        neighborhood: "Barra da Tijuca",
+        city: "Rio de Janeiro",
+        state: "RJ",
+        zip_code: "22845046",
+        country_code: "BR"
+    }
   	}, 
   	Seller: { 
 		token: "e84ad069-ff20-4952-bf8d-40e9da9e1d59"

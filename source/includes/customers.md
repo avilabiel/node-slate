@@ -686,3 +686,19 @@ const response = await axios.post(`/v1/network/${networkToken}/customer/${custom
 #### Query Parameters
 
 None.
+
+## Credit Cards
+Customers can make payments through their credit cards. We have the option to save the Credit Card information and use Card tokens. It's faster and safer.
+
+<aside class=warning>
+The Customer must be approved to use this endpoint.
+</aside>
+
+<aside class=warning>
+We follow all security protocols like PCI-DDS.
+</aside>
+
+### Create a Credit Card
+
+### Get all Credit Cards
+### Delete a Credit Card
