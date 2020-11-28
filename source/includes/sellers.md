@@ -886,6 +886,145 @@ The Seller must be approved to use this endpoint.
 
 ### Create a Bank Account
 
+```javascript
+const networkToken = "9460246d-3c0e-4318-8874-5f7acca63efc";
+const sellerToken = "7fc5e37f-5760-4848-bb9f-6a3e40977903";
+const brydgeSandboxURL = "https://register.brydge.com.br";
+const api = axios. axios.create({
+    baseURL: brydgeSandboxURL,
+});
+
+const response = await axios.post(`/v1/network/${networkToken}/seller/${sellerToken}/bank-account`, {
+	bank_account: {
+    token: "e84ad069-ff20-4952-bf8d-40e9da9e1d59",
+    id_bank: 1,
+    agency_number: "1234",
+    account_number: "254421-2",
+    type: "checking",
+	}
+}, {
+    headers: {
+      api_key: <API_KEY_FROM_YOUR_COMPANY>
+   }
+});
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "success": true,
+  "bank_account": {    
+    "token": "cf157c3d-5295-4251-ba9d-04ffceeba971",
+    "id_bank": 1,
+    "agency_number": "1234",
+    "account_number": "254421-2",
+    "type": "checking",
+    "active": true,
+    "createdAt": "2020-01-30T13:28:47.000Z",
+    "updatedAt": "2020-01-30T13:28:47.000Z"
+  }
+}
+```
+
+This endpoint creates a new Seller's bank account.
+
+#### HTTP Request
+
+**Sandbox**
+`POST https://register.brydge.com.br/v1/network/:networkToken/seller/:sellerToken/bank-account`
+
+**Production**
+`POST https://register.brydge.io/v1/network/:networkToken/seller/:sellerToken/bank-account`
+
+#### Query Parameters
+
+None.
+
 ### Get all Bank Accounts
 
+```javascript
+const networkToken = "9460246d-3c0e-4318-8874-5f7acca63efc";
+const sellerToken = "7fc5e37f-5760-4848-bb9f-6a3e40977903";
+const bankAccountToken = "cf157c3d-5295-4251-ba9d-04ffceeba971";
+const brydgeSandboxURL = "https://register.brydge.com.br";
+const api = axios. axios.create({
+    baseURL: brydgeSandboxURL,
+});
+
+const response = await axios.get(
+  `/v1/network/${networkToken}/seller/${sellerToken}/bank-accounts`, {
+    headers: {
+      api_key: <API_KEY_FROM_YOUR_COMPANY>
+   }
+});
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "success": true,
+  "bank_accounts": [
+    {    
+      "token": "cf157c3d-5295-4251-ba9d-04ffceeba971",
+      "id_bank": 1,
+      "agency_number": "1234",
+      "account_number": "254421-2",
+      "type": "checking",
+      "active": true,
+      "createdAt": "2020-01-30T13:28:47.000Z",
+      "updatedAt": "2020-01-30T13:28:47.000Z"
+    },
+    ...
+  ]
+}
+```
+
+This endpoint takes information from all Seller's bank accounts.
+
+#### HTTP Request
+
+**Sandbox**
+`GET https://register.brydge.com.br/v1/network/:networkToken/seller/:sellerToken/bank-accounts`
+
+**Production**
+`GET https://register.brydge.io/v1/network/:networkToken/seller/:sellerToken/bank-accounts`
+
 ### Delete Bank Account
+
+```javascript
+const networkToken = "9460246d-3c0e-4318-8874-5f7acca63efc";
+const sellerToken = "7fc5e37f-5760-4848-bb9f-6a3e40977903";
+const bankAccountToken = "cf157c3d-5295-4251-ba9d-04ffceeba971";
+const brydgeSandboxURL = "https://register.brydge.com.br";
+const api = axios. axios.create({
+    baseURL: brydgeSandboxURL,
+});
+
+const response = await axios.get(
+  `/v1/network/${networkToken}/seller/${sellerToken}/bank-account/${bankAccountToken}`, {
+    headers: {
+      api_key: <API_KEY_FROM_YOUR_COMPANY>
+   }
+});
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "success": true,
+  "msg": "Seller's bank account was deleted"
+}
+```
+
+This endpoint deletes a Seller's bank account.
+
+#### HTTP Request
+
+**Sandbox**
+`GET https://register.brydge.com.br/v1/network/:networkToken/seller/:sellerToken/bank-account/:bankAccountToken`
+
+**Production**
+`GET https://register.brydge.io/v1/network/:networkToken/seller/:sellerToken/bank-account/:bankAccountToken`

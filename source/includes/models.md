@@ -11,3 +11,4 @@
 ## BankAccount
 ## ApprovalStatuses
 ## BankTransferStatuses
+## Bank
