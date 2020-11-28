@@ -35,3 +35,6 @@ Sometimes we want to understand every detail in the first read. Don't worry, you
 
 ### Check the Models
 If you are not sure about a field, just try to check the Models. Everything here is based on Entities!
+
+### We use tokens, save them
+Don't forget to save the tokens that the POST requests generate. That's how we get the data on GET requests.

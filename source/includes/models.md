@@ -7,3 +7,6 @@
 ## Payment
 ## Statement
 ## Document
+## BankAccount
+## ApprovalStatuses
+## BankTransferStatuses
