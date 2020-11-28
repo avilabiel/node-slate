@@ -39,10 +39,8 @@ const response = await axios.post(`/v1/network/${networkToken}/customer`, {
 {
   "success": true,
   "data": {
-    "id": 1,
     "cpf": "41235235214",
     "token": "cf157c3d-5295-4251-ba9d-04ffceeba971",
-    "id_zoop": null,
     "first_name": "Rafael",
     "last_name": "Silva",
     "email": "teste@gmail.com",
@@ -58,19 +56,20 @@ This endpoint creates a new customer with the basic information.
 #### HTTP Request
 
 **Sandbox**
-`GET https://register.brydge.com.br/v1/network/:networkToken/customer`
+`POST https://register.brydge.com.br/v1/network/:networkToken/customer`
 
 **Production**
-`GET https://register.brydge.io/v1/network/:networkToken/customer`
+`POST https://register.brydge.io/v1/network/:networkToken/customer`
 
 #### Query Parameters
 
 None.
 
-### Get a Customer
+### Get a Customer by CPF
 
 ```javascript
 const networkToken = "9460246d-3c0e-4318-8874-5f7acca63efc";
+const cpf = "41235235213";
 const brydgeSandboxURL = "https://register.brydge.com.br";
 const api = axios. axios.create({
     baseURL: brydgeSandboxURL,
@@ -94,12 +93,14 @@ const response = await axios.get(`/v1/network/${networkToken}/customer/${cpf}`, 
     "first_name": "Rafael",
     "last_name": "Silva",
     "email": "teste@gmail.com",
-    "birthdate": "1985-03-21T00:00:00.000Z"
+    "birthdate": "1985-03-21T00:00:00.000Z",
+    "createdAt": "2020-01-30T13:28:47.000Z",
+    "updatedAt": "2020-01-30T13:28:47.000Z"
   }
 }
 ```
 
-This endpoint takes information from a specific customer.
+This endpoint takes information from a specific customer by CPF.
 
 #### HTTP Request
 
@@ -113,10 +114,60 @@ This endpoint takes information from a specific customer.
 
 None.
 
+### Get a Customer by Token
+
+```javascript
+const networkToken = "9460246d-3c0e-4318-8874-5f7acca63efc";
+const customerToken = "382184a-382d-hsa3-4882-849c932jduw";
+const brydgeSandboxURL = "https://register.brydge.com.br";
+const api = axios. axios.create({
+    baseURL: brydgeSandboxURL,
+});
+
+const response = await axios.get(`/v1/network/${networkToken}/customer/${customerToken}`, {
+    headers: {
+      api_key: <API_KEY_FROM_YOUR_COMPANY>
+   }
+});
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "success": true,
+  "data": {
+    "cpf": "41235235214",
+    "token": "cf157c3d-5295-4251-ba9d-04ffceeba971",
+    "first_name": "Rafael",
+    "last_name": "Silva",
+    "email": "teste@gmail.com",
+    "birthdate": "1985-03-21T00:00:00.000Z",
+    "createdAt": "2020-01-30T13:28:47.000Z",
+    "updatedAt": "2020-01-30T13:28:47.000Z"
+  }
+}
+```
+
+This endpoint takes information from a specific customer by Token.
+
+#### HTTP Request
+
+**Sandbox**
+`GET https://register.brydge.com.br/v1/network/:networkToken/customer/:customerToken`
+
+**Production**
+`GET https://register.brydge.io/v1/network/:networkToken/customer/:customerToken`
+
+#### Query Parameters
+
+None.
+
 ### Update a Customer
 
 ```javascript
 const networkToken = "9460246d-3c0e-4318-8874-5f7acca63efc";
+const customerToken = "382184a-382d-hsa3-4882-849c932jduw";
 const brydgeSandboxURL = "https://register.brydge.com.br";
 const api = axios. axios.create({
     baseURL: brydgeSandboxURL,
@@ -142,7 +193,7 @@ const response = await axios.update(`/v1/network/${networkToken}/customer/${cust
 ```json
 {
   "success": true,
-  "msg": "Customer updated"
+  "msg": "Customer was updated"
 }
 ```
 
@@ -151,10 +202,10 @@ This endpoint updates information for a specific customer.
 #### HTTP Request
 
 **Sandbox**
-`GET https://register.brydge.com.br/v1/network/:networkToken/customer/:customerToken`
+`PUT https://register.brydge.com.br/v1/network/:networkToken/customer/:customerToken`
 
 **Production**
-`GET https://register.brydge.io/v1/network/:networkToken/customer/:customerToken`
+`PUT https://register.brydge.io/v1/network/:networkToken/customer/:customerToken`
 
 #### Query Parameters
 
@@ -164,6 +215,7 @@ None.
 
 ```javascript
 const networkToken = "9460246d-3c0e-4318-8874-5f7acca63efc";
+const customerToken = "382184a-382d-hsa3-4882-849c932jduw";
 const brydgeSandboxURL = "https://register.brydge.com.br";
 const api = axios. axios.create({
     baseURL: brydgeSandboxURL,
@@ -181,7 +233,7 @@ const response = await axios.delete(`/v1/network/${networkToken}/customer/${cust
 ```json
 {
   "success": true,
-  "msg": "Customer deleted"
+  "msg": "Customer was deleted"
 }
 ```
 
@@ -190,10 +242,10 @@ This endpoint delete a specific customer.
 #### HTTP Request
 
 **Sandbox**
-`GET https://register.brydge.com.br/v1/network/:networkToken/customer/:customerToken`
+`DELETE https://register.brydge.com.br/v1/network/:networkToken/customer/:customerToken`
 
 **Production**
-`GET https://register.brydge.io/v1/network/:networkToken/customer/:customerToken`
+`DELET https://register.brydge.io/v1/network/:networkToken/customer/:customerToken`
 
 #### Query Parameters
 
@@ -205,12 +257,15 @@ None.
 
 ```javascript
 const networkToken = "9460246d-3c0e-4318-8874-5f7acca63efc";
+const customerToken = "382184a-382d-hsa3-4882-849c932jduw";
 const brydgeSandboxURL = "https://register.brydge.com.br";
 const api = axios. axios.create({
     baseURL: brydgeSandboxURL,
 });
 
-const response = await axios.post(`/v1/network/${networkToken}/customer/${customerToken}/phone`, {
+const response = await axios.post(
+  `/v1/network/${networkToken}/customer/${customerToken}/phone`, 
+  {
 	phone:{
 		 area_code: 13,
 		 country_code:55,
@@ -229,8 +284,10 @@ const response = await axios.post(`/v1/network/${networkToken}/customer/${custom
 {
   "success": true,
   "data": {
-    "id": 1,
-    "id_company_network_customer": 3,
+    "token": "d881ba21-92ad-4837-a672-4821ffc83b5c",
+    "CompanyNetwork": {
+      "token": "9460246d-3c0e-4318-8874-5f7acca63efc"
+    },
     "active": true,
     "area_code": 13,
     "country_code": 55,
@@ -246,10 +303,10 @@ This endpoint creates a new customer's phone.
 #### HTTP Request
 
 **Sandbox**
-`GET https://register.brydge.com.br/v1//network/:networkToken/customer/:customerToken/phone`
+`POST https://register.brydge.com.br/v1//network/:networkToken/customer/:customerToken/phone`
 
 **Production**
-`GET https://register.brydge.io/v1//network/:networkToken/customer/:customerToken/phone`
+`POST https://register.brydge.io/v1//network/:networkToken/customer/:customerToken/phone`
 
 #### Query Parameters
 
@@ -259,12 +316,16 @@ None.
 
 ```javascript
 const networkToken = "9460246d-3c0e-4318-8874-5f7acca63efc";
+const customerToken = "382184a-382d-hsa3-4882-849c932jduw";
+const phoneToken = "d881ba21-92ad-4837-a672-4821ffc83b5c";
 const brydgeSandboxURL = "https://register.brydge.com.br";
 const api = axios. axios.create({
     baseURL: brydgeSandboxURL,
 });
 
-const response = await axios.get(`/v1/network/${networkToken}/customer/${customerToken}/phone/${phone_id}`, {
+const response = await axios.get(
+  `/v1/network/${networkToken}/customer/${customerToken}/phone/${phoneToken}`, 
+  {
     headers: {
       api_key: <API_KEY_FROM_YOUR_COMPANY>
    }
@@ -275,30 +336,31 @@ const response = await axios.get(`/v1/network/${networkToken}/customer/${custome
 
 ```json
 {
-  "status": "success",
+  "success": true,
   "data": {
-    "id": 1,
-    "id_company_network_customer": 1,
+    "token": "d881ba21-92ad-4837-a672-4821ffc83b5c",
+    "CompanyNetwork": {
+      "token": "9460246d-3c0e-4318-8874-5f7acca63efc"
+    },
+    "active": true,
     "area_code": 13,
     "country_code": 55,
     "number": "2583564",
-    "active": true,
-    "deleted_at": "2020-10-20T14:34:21.000Z",
-    "createdAt": "2020-10-20T14:05:59.000Z",
-    "updatedAt": "2020-10-20T14:34:21.000Z"
+    "updatedAt": "2020-11-27T19:11:44.091Z",
+    "createdAt": "2020-11-27T19:11:44.091Z"
   }
 }
 ```
 
-This endpoint takes information from a specific customer.
+This endpoint gets the customer's phone by Phone's Token.
 
 #### HTTP Request
 
 **Sandbox**
-`GET https://register.brydge.com.br/v1//network/:networkToken/customer/:customerToken/phone/:phone_id`
+`GET https://register.brydge.com.br/v1//network/:networkToken/customer/:customerToken/phone/:phoneToken`
 
 **Production**
-`GET https://register.brydge.io/v1//network/:networkToken/customer/:customerToken/phone/:phone_id`
+`GET https://register.brydge.io/v1//network/:networkToken/customer/:customerToken/phone/:phoneToken`
 
 #### Query Parameters
 
@@ -308,12 +370,16 @@ None.
 
 ```javascript
 const networkToken = "9460246d-3c0e-4318-8874-5f7acca63efc";
+const customerToken = "382184a-382d-hsa3-4882-849c932jduw";
+const phoneToken = "d881ba21-92ad-4837-a672-4821ffc83b5c";
 const brydgeSandboxURL = "https://register.brydge.com.br";
 const api = axios. axios.create({
     baseURL: brydgeSandboxURL,
 });
 
-const response = await axios.update(`/v1/network/${networkToken}/customer/${customerToken}/phone/${phone_id}`, {
+const response = await axios.update(
+  `/v1/network/${networkToken}/customer/${customerToken}/phone/${phoneToken}`, 
+  {
 	phone:{
 		 area_code: 13,
 		 country_code:55,
@@ -330,8 +396,8 @@ const response = await axios.update(`/v1/network/${networkToken}/customer/${cust
 
 ```json
 {
-  "status": "success",
-  "msg": "Customer's phone updated"
+  "success": true,
+  "msg": "Customer's phone was updated"
 }
 ```
 
@@ -340,10 +406,10 @@ This endpoint updates information for a specific customer's phone.
 #### HTTP Request
 
 **Sandbox**
-`GET https://register.brydge.com.br/v1/network/:networkToken/customer/:customerToken/phone/:phone_id`
+`PUT https://register.brydge.com.br/v1/network/:networkToken/customer/:customerToken/phone/:phoneToken`
 
 **Production**
-`GET https://register.brydge.io/v1/network/:networkToken/customer/:customerToken/phone/:phone_id`
+`PUT https://register.brydge.io/v1/network/:networkToken/customer/:customerToken/phone/:phoneToken`
 
 #### Query Parameters
 
@@ -353,12 +419,16 @@ None.
 
 ```javascript
 const networkToken = "9460246d-3c0e-4318-8874-5f7acca63efc";
+const customerToken = "382184a-382d-hsa3-4882-849c932jduw";
+const phoneToken = "d881ba21-92ad-4837-a672-4821ffc83b5c";
 const brydgeSandboxURL = "https://register.brydge.com.br";
 const api = axios. axios.create({
     baseURL: brydgeSandboxURL,
 });
 
-const response = await axios.delete(`/v1/network/${networkToken}/customer/${customerToken}/phone/${phone_id}`, {
+const response = await axios.delete(
+  `/v1/network/${networkToken}/customer/${customerToken}/phone/${phoneToken}`, 
+  {
     headers: {
       api_key: <API_KEY_FROM_YOUR_COMPANY>
    }
@@ -369,8 +439,8 @@ const response = await axios.delete(`/v1/network/${networkToken}/customer/${cust
 
 ```json
 {
-  "status": "success",
-  "msg": "Customer's phone deleted"
+  "success": true,
+  "msg": "Customer's phone was deleted"
 }
 ```
 
@@ -379,10 +449,10 @@ This endpoint delete a specific customer's phone.
 #### HTTP Request
 
 **Sandbox**
-`GET https://register.brydge.com.br/v1//network/:networkToken/customer/:customerToken/phone/:phone_id`
+`DELETE https://register.brydge.com.br/v1//network/:networkToken/customer/:customerToken/phone/:phoneToken`
 
 **Production**
-`GET https://register.brydge.io/v1//network/:networkToken/customer/:customerToken/phone/:phone_id`
+`DELETE https://register.brydge.io/v1//network/:networkToken/customer/:customerToken/phone/:phoneToken`
 
 #### Query Parameters
 
@@ -394,6 +464,7 @@ None.
 
 ```javascript
 const networkToken = "9460246d-3c0e-4318-8874-5f7acca63efc";
+const customerToken = "382184a-382d-hsa3-4882-849c932jduw";
 const brydgeSandboxURL = "https://register.brydge.com.br";
 const api = axios. axios.create({
     baseURL: brydgeSandboxURL,
@@ -422,8 +493,10 @@ const response = await axios.post(`/v1/network/${networkToken}/customer/${custom
 {
   "success": true,
   "data": {
-    "id": 1,
-    "id_company_network_customer": 3,
+    "token": "d881ba21-92ad-4837-a672-4821ffc83b5c",
+    "CompanyNetwork": {
+      "token": "9460246d-3c0e-4318-8874-5f7acca63efc"
+    },
     "street": "Av Americas, 500  Citta América",
     "neighborhood": "Barra da Tijuca",
     "city": "Rio de Janeiro",
@@ -441,10 +514,10 @@ This endpoint creates a new customer's address.
 #### HTTP Request
 
 **Sandbox**
-`GET https://register.brydge.com.br/v1/network/:networkToken/customer/:customerToken/address`
+`POST https://register.brydge.com.br/v1/network/:networkToken/customer/:customerToken/address`
 
 **Production**
-`GET https://register.brydge.io/v1/network/:networkToken/customer/:customerToken/address`
+`POST https://register.brydge.io/v1/network/:networkToken/customer/:customerToken/address`
 
 #### Query Parameters
 
@@ -454,12 +527,13 @@ None.
 
 ```javascript
 const networkToken = "9460246d-3c0e-4318-8874-5f7acca63efc";
+const addressToken = "d881ba21-92ad-4837-a672-4821ffc83b5c";
 const brydgeSandboxURL = "https://register.brydge.com.br";
 const api = axios. axios.create({
     baseURL: brydgeSandboxURL,
 });
 
-const response = await axios.get(`/v1/network/${networkToken}/customer/${customerToken}/address/${address_id}`, {
+const response = await axios.get(`/v1/network/${networkToken}/customer/${customerToken}/address/${addressToken}`, {
     headers: {
       api_key: <API_KEY_FROM_YOUR_COMPANY>
    }
@@ -470,19 +544,20 @@ const response = await axios.get(`/v1/network/${networkToken}/customer/${custome
 
 ```json
 {
-  "status": "success",
+  "success": true,
   "data": {
-    "id": 1,
-    "id_company_network_customer": 1,
-    "state": "RJ",
-    "city": "Rio de Janeiro",
-    "zip_code": "22845046",
+    "token": "d881ba21-92ad-4837-a672-4821ffc83b5c",
+    "CompanyNetwork": {
+      "token": "9460246d-3c0e-4318-8874-5f7acca63efc"
+    },
     "street": "Av Americas, 500  Citta América",
-    "complement": null,
     "neighborhood": "Barra da Tijuca",
+    "city": "Rio de Janeiro",
+    "state": "RJ",
+    "zip_code": "22845046",
     "country_code": "BR",
-    "createdAt": "2020-10-20T14:04:53.000Z",
-    "updatedAt": "2020-10-20T14:32:09.000Z"
+    "updatedAt": "2020-11-27T19:10:37.198Z",
+    "createdAt": "2020-11-27T19:10:37.198Z"
   }
 }
 ```
@@ -492,10 +567,10 @@ This endpoint takes information from a specific customer's address.
 #### HTTP Request
 
 **Sandbox**
-`GET https://register.brydge.com.br/v1//network/:networkToken/customer/:customerToken/address/:address_id`
+`GET https://register.brydge.com.br/v1//network/:networkToken/customer/:customerToken/address/:addressToken`
 
 **Production**
-`GET https://register.brydge.io/v1//network/:networkToken/customer/:customerToken/address/:address_id`
+`GET https://register.brydge.io/v1//network/:networkToken/customer/:customerToken/address/:addressToken`
 
 #### Query Parameters
 
@@ -505,12 +580,13 @@ None.
 
 ```javascript
 const networkToken = "9460246d-3c0e-4318-8874-5f7acca63efc";
+const addressToken = "d881ba21-92ad-4837-a672-4821ffc83b5c";
 const brydgeSandboxURL = "https://register.brydge.com.br";
 const api = axios. axios.create({
     baseURL: brydgeSandboxURL,
 });
 
-const response = await axios.update(`/v1/network/${networkToken}/customer/${customerToken}/address/${address_id}`, {
+const response = await axios.update(`/v1/network/${networkToken}/customer/${customerToken}/address/${addressToken}`, {
 	address:{
 			line1:"AAv Americas, 200",
 			line2:"Citta América",
@@ -532,7 +608,7 @@ const response = await axios.update(`/v1/network/${networkToken}/customer/${cust
 ```json
 {
   "status": "success",
-  "msg": "Customer's address updated"
+  "msg": "Customer's address was updated"
 }
 ```
 
@@ -541,10 +617,10 @@ This endpoint updates information for a specific customer's address.
 #### HTTP Request
 
 **Sandbox**
-`GET https://register.brydge.com.br/v1//network/:networkToken/customer/:customerToken/address/:address_id`
+`PUT https://register.brydge.com.br/v1//network/:networkToken/customer/:customerToken/address/:addressToken`
 
 **Production**
-`GET https://register.brydge.io/v1//network/:networkToken/customer/:customerToken/address/:address_id`
+`PUT https://register.brydge.io/v1//network/:networkToken/customer/:customerToken/address/:addressToken`
 
 #### Query Parameters
 
@@ -552,8 +628,23 @@ None.
 
 ## Approval
 
+Only approved customers can make payments on Brydge API. For a customer to be approved, the following information must be sent:
+
+1. Customer's data
+2. Phones
+3. Address
+
+Only with this information is it possible for a customer to be approved. This analyze is **synchronously**.
+
+This endpoint requests the approval from KYC process for a new customer.
+
+<aside class=warning>
+This KYC process is very important to protect us against money laundry and some legal processes.
+</aside>
+
 ```javascript
 const networkToken = "9460246d-3c0e-4318-8874-5f7acca63efc";
+const customerToken = "d881ba21-92ad-4837-a672-4821ffc83b5c";
 const brydgeSandboxURL = "https://register.brydge.com.br";
 const api = axios. axios.create({
     baseURL: brydgeSandboxURL,
@@ -571,64 +662,23 @@ const response = await axios.post(`/v1/network/${networkToken}/customer/${custom
 ```json
 {
   "success": true,
-  "message": "Customer has been created",
+  "message": "Customer has been approved",
   "data": {
-    "id": "99c94033afbe48aa81c11edbcf60ede9",
     "status": "active",
-    "resource": "buyer",
-    "account_balance": "0.00",
-    "current_balance": "0.00",
-    "first_name": "michellexx",
-    "last_name": "teste",
-    "taxpayer_id": "86446184077",
-    "description": null,
-    "email": "michelle.zooper@zoop.com.br",
-    "phone_number": "55-13-2583564",
-    "facebook": null,
-    "twitter": null,
-    "address": {
-      "line1": "Av Americas, 500  Citta América",
-      "line2": null,
-      "line3": null,
-      "neighborhood": "Barra da Tijuca",
-      "city": "Rio de Janeiro",
-      "state": "RJ",
-      "postal_code": "22845046",
-      "country_code": "BR"
-    },
-    "delinquent": false,
-    "payment_methods": null,
-    "default_debit": null,
-    "default_credit": null,
-    "default_receipt_delivery_method": null,
-    "uri": "/v1/marketplaces/9b6a5d460fab42549c4b3c9838863793/buyers/99c94033afbe48aa81c11edbcf60ede9",
-    "metadata": {},
     "created_at": "2020-11-27T19:12:04+00:00",
     "updated_at": "2020-11-27T19:12:04+00:00"
   }
 }
 ```
 
-This endpoint approves a new customer with the basic information.
-
 #### HTTP Request
 
 **Sandbox**
-`GET https://register.brydge.com.br/v1/network/:networkToken/customer/:customerToken/approval`
+`POST https://register.brydge.com.br/v1/network/:networkToken/customer/:customerToken/approval`
 
 **Production**
-`GET https://register.brydge.io/v1/network/:networkToken/customer/:customerToken/approval`
+`POST https://register.brydge.io/v1/network/:networkToken/customer/:customerToken/approval`
 
 #### Query Parameters
 
 None.
-
-### Request KYC Approval
-
-For a customer to be approved, the following information must be sent:
-
-1. Customer's data
-2. Phones
-3. Address
-
-Only with this information is it possible for a customer to have approval.

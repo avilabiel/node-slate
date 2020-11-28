@@ -84,10 +84,11 @@ This endpoint creates a new seller with the basic information.
 
 None.
 
-### Get a Seller
+### Get a Seller by CPF
 
 ```javascript
 const networkToken = "9460246d-3c0e-4318-8874-5f7acca63efc";
+const cpf = "41235235213";
 const brydgeSandboxURL = "https://register.brydge.com.br";
 const api = axios. axios.create({
     baseURL: brydgeSandboxURL,
@@ -120,7 +121,7 @@ const response = await axios.get(`/v1/network/${networkToken}/seller/${cnpj}`, {
 }
 ```
 
-This endpoint takes information from a specific seller.
+This endpoint takes information from a specific seller by CPF.
 
 #### HTTP Request
 
