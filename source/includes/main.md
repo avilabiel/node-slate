@@ -32,3 +32,6 @@ We provide examples to help you to connect with us faster. Pay attention to them
 
 ### Don't worry, we won't be offline
 Sometimes we want to understand every detail in the first read. Don't worry, you can get back here later. Use this documentation as a manual.
+
+### Check the Models
+If you are not sure about a field, just try to check the Models. Everything here is based on Entities!
