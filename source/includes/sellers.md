@@ -818,22 +818,17 @@ None.
 
 ```javascript
 const networkToken = "9460246d-3c0e-4318-8874-5f7acca63efc";
-const customerToken = "382184a-382d-hsa3-4882-849c932jduw";
+const sellerToken = "382184a-382d-hsa3-4882-849c932jduw";
+const documentType = "CNPJ";
 const brydgeSandboxURL = "https://register.brydge.com.br";
 const api = axios. axios.create({
     baseURL: brydgeSandboxURL,
 });
 
 const response = await axios.post(
-  `/v1/network/${networkToken}/customer/${customerToken}/credit-card`, 
+  `/v1/network/${networkToken}/seller/${sellerToken}/document/${documentType}`, 
   {
-	  card: {
-		  holder_name: "Test Name",
-		  expiration_month: "02",
-	  	expiration_year: "2028",
-		  card_number: "123412341234",
-		  security_code: "022"
-    }
+	  file: <UPLOADED_FILE>
   }, {
     headers: {
       api_key: <API_KEY_FROM_YOUR_COMPANY>
@@ -847,13 +842,8 @@ const response = await axios.post(
 ```json
 {
   "success": true,
-  "card": {
-    "last4_digits": "************3308",
-    "token": "b44a8cd6-dd42-491e-9f52-671ef5d1ac2e",
-    "card_brand": "MasterCard",
-    "updatedAt": "2020-11-27T19:10:37.198Z",
-    "createdAt": "2020-11-27T19:10:37.198Z"
-  }
+  "msg": "Upload has been made",
+  "url": "https://brydge-register-upload.s3.amazonaws.com/seller/83281jnds8231nb"
 }
 ```
 
@@ -866,10 +856,10 @@ Use enctype="multipart/form-data"
 #### HTTP Request
 
 **Sandbox**
-`POST https://register.brydge.com.br/v1/network/:networkToken/customer/:customerToken/credit-card`
+`POST https://register.brydge.com.br/v1/network/:networkToken/seller/:sellerToken/document/:documentType`
 
 **Production**
-`POST https://register.brydge.io/v1/network/:networkToken/customer/:customerToken/credit-card`
+`POST https://register.brydge.io/v1/network/:networkToken/seller/:sellerToken/document/:documentType`
 
 #### Query Parameters
 
