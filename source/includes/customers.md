@@ -691,14 +691,210 @@ None.
 Customers can make payments through their credit cards. We have the option to save the Credit Card information and use Card tokens. It's faster and safer.
 
 <aside class=warning>
-The Customer must be approved to use this endpoint.
-</aside>
-
-<aside class=warning>
 We follow all security protocols like PCI-DDS.
 </aside>
 
 ### Create a Credit Card
 
+<aside class=warning>
+The Customer must be approved to use this endpoint.
+</aside>
+
+```javascript
+const networkToken = "9460246d-3c0e-4318-8874-5f7acca63efc";
+const customerToken = "382184a-382d-hsa3-4882-849c932jduw";
+const brydgeSandboxURL = "https://register.brydge.com.br";
+const api = axios. axios.create({
+    baseURL: brydgeSandboxURL,
+});
+
+const response = await axios.post(
+  `/v1/network/${networkToken}/customer/${customerToken}/credit-card`, 
+  {
+	  card: {
+		  holder_name: "Test Name",
+		  expiration_month: "02",
+	  	expiration_year: "2028",
+		  card_number: "123412341234",
+		  security_code: "022"
+    }
+  }, {
+    headers: {
+      api_key: <API_KEY_FROM_YOUR_COMPANY>
+    }
+  }
+);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "success": true,
+  "card": {
+    "last4_digits": "************3308",
+    "token": "b44a8cd6-dd42-491e-9f52-671ef5d1ac2e",
+    "card_brand": "MasterCard",
+    "updatedAt": "2020-11-27T19:10:37.198Z",
+    "createdAt": "2020-11-27T19:10:37.198Z"
+  }
+}
+```
+
+This endpoint creates a new customer's credit card.
+
+#### HTTP Request
+
+**Sandbox**
+`POST https://register.brydge.com.br/v1/network/:networkToken/customer/:customerToken/credit-card`
+
+**Production**
+`POST https://register.brydge.io/v1/network/:networkToken/customer/:customerToken/credit-card`
+
+#### Query Parameters
+
+None.
+
+### Get a Credit Card
+```javascript
+const networkToken = "9460246d-3c0e-4318-8874-5f7acca63efc";
+const customerToken = "382184a-382d-hsa3-4882-849c932jduw";
+const creditCardToken = "b44a8cd6-dd42-491e-9f52-671ef5d1ac2e";
+const brydgeSandboxURL = "https://register.brydge.com.br";
+const api = axios. axios.create({
+    baseURL: brydgeSandboxURL,
+});
+
+const response = await axios.get(
+  `/v1/network/${networkToken}/customer/${customerToken}/credit-card/${creditCardToken}`, 
+  {
+    headers: {
+      api_key: <API_KEY_FROM_YOUR_COMPANY>
+   }
+});
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "success": true,
+  "card": {
+    "last4_digits": "************3308",
+    "token": "b44a8cd6-dd42-491e-9f52-671ef5d1ac2e",
+    "card_brand": "MasterCard",
+    "updatedAt": "2020-11-27T19:10:37.198Z",
+    "createdAt": "2020-11-27T19:10:37.198Z"
+  }
+}
+```
+
+This endpoint takes a specific customer's credit card.
+
+#### HTTP Request
+
+**Sandbox**
+`GET https://register.brydge.com.br/v1//network/:networkToken/customer/:customerToken/credit-card/:creditCardToken`
+
+**Production**
+`GET https://register.brydge.io/v1//network/:networkToken/customer/:customerToken/credit-card/:creditCardToken`
+
+#### Query Parameters
+
+None.
+
 ### Get all Credit Cards
+
+```javascript
+const networkToken = "9460246d-3c0e-4318-8874-5f7acca63efc";
+const customerToken = "382184a-382d-hsa3-4882-849c932jduw";
+const brydgeSandboxURL = "https://register.brydge.com.br";
+const api = axios. axios.create({
+    baseURL: brydgeSandboxURL,
+});
+
+const response = await axios.get(`/v1/network/${networkToken}/customer/${customerToken}/credit-cards/`, {
+    headers: {
+      api_key: <API_KEY_FROM_YOUR_COMPANY>
+   }
+});
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "success": true,
+  "cards": [
+    {
+      "last4_digits": "************3308",
+      "token": "b44a8cd6-dd42-491e-9f52-671ef5d1ac2e",
+      "card_brand": "MasterCard",
+      "updatedAt": "2020-11-27T19:10:37.198Z",
+      "createdAt": "2020-11-27T19:10:37.198Z"
+    },
+    ...
+  ]
+}
+```
+
+This endpoint takes all customer's credit cards.
+
+#### HTTP Request
+
+**Sandbox**
+`GET https://register.brydge.com.br/v1//network/:networkToken/customer/:customerToken/credit-cards`
+
+**Production**
+`GET https://register.brydge.io/v1//network/:networkToken/customer/:customerToken/credit-cards`
+
+#### Query Parameters
+
+None.
+
 ### Delete a Credit Card
+
+<aside class=warning>
+The Customer must be approved to use this endpoint.
+</aside>
+
+```javascript
+const networkToken = "9460246d-3c0e-4318-8874-5f7acca63efc";
+const customerToken = "382184a-382d-hsa3-4882-849c932jduw";
+const creditCardToken = "b44a8cd6-dd42-491e-9f52-671ef5d1ac2e";
+const brydgeSandboxURL = "https://register.brydge.com.br";
+const api = axios. axios.create({
+    baseURL: brydgeSandboxURL,
+});
+
+const response = await axios.delete(
+  `/v1/network/${networkToken}/customer/${customerToken}/credit-card/${creditCardToken}`, 
+  {
+    headers: {
+      api_key: <API_KEY_FROM_YOUR_COMPANY>
+   }
+});
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "success": true,
+  "msg": "Customer's credit card was deleted"
+}
+```
+
+This endpoint deletes a specific customer's credit card.
+
+#### HTTP Request
+
+**Sandbox**
+`DELETE https://register.brydge.com.br/v1//network/:networkToken/customer/:customerToken/credit-card/:creditCardToken`
+
+**Production**
+`DELETE https://register.brydge.io/v1//network/:networkToken/customer/:customerToken/credit-card/:creditCardToken`
+
+#### Query Parameters
+
+None.
