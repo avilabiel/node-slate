@@ -38,7 +38,7 @@ const response = await axios.post(`/v1/network/${networkToken}/customer`, {
 ```json
 {
   "success": true,
-  "data": {
+  "customer": {
     "cpf": "41235235214",
     "token": "cf157c3d-5295-4251-ba9d-04ffceeba971",
     "first_name": "Rafael",
@@ -87,7 +87,7 @@ const response = await axios.get(`/v1/network/${networkToken}/customer/${cpf}`, 
 ```json
 {
   "success": true,
-  "data": {
+  "customer": {
     "cpf": "41235235214",
     "token": "cf157c3d-5295-4251-ba9d-04ffceeba971",
     "first_name": "Rafael",
@@ -136,7 +136,7 @@ const response = await axios.get(`/v1/network/${networkToken}/customer/${custome
 ```json
 {
   "success": true,
-  "data": {
+  "customer": {
     "cpf": "41235235214",
     "token": "cf157c3d-5295-4251-ba9d-04ffceeba971",
     "first_name": "Rafael",
@@ -283,7 +283,7 @@ const response = await axios.post(
 ```json
 {
   "success": true,
-  "data": {
+  "phone": {
     "token": "d881ba21-92ad-4837-a672-4821ffc83b5c",
     "CompanyNetwork": {
       "token": "9460246d-3c0e-4318-8874-5f7acca63efc"
@@ -337,7 +337,7 @@ const response = await axios.get(
 ```json
 {
   "success": true,
-  "data": {
+  "customer": {
     "token": "d881ba21-92ad-4837-a672-4821ffc83b5c",
     "CompanyNetwork": {
       "token": "9460246d-3c0e-4318-8874-5f7acca63efc"
@@ -444,7 +444,7 @@ const response = await axios.delete(
 }
 ```
 
-This endpoint delete a specific customer's phone.
+This endpoint deletes a specific customer's phone.
 
 #### HTTP Request
 
@@ -492,7 +492,7 @@ const response = await axios.post(`/v1/network/${networkToken}/customer/${custom
 ```json
 {
   "success": true,
-  "data": {
+  "customer": {
     "token": "d881ba21-92ad-4837-a672-4821ffc83b5c",
     "CompanyNetwork": {
       "token": "9460246d-3c0e-4318-8874-5f7acca63efc"
@@ -545,7 +545,7 @@ const response = await axios.get(`/v1/network/${networkToken}/customer/${custome
 ```json
 {
   "success": true,
-  "data": {
+  "customer": {
     "token": "d881ba21-92ad-4837-a672-4821ffc83b5c",
     "CompanyNetwork": {
       "token": "9460246d-3c0e-4318-8874-5f7acca63efc"
@@ -634,12 +634,16 @@ Only approved customers can make payments on Brydge API. For a customer to be ap
 2. Phones
 3. Address
 
-Only with this information is it possible for a customer to be approved. This analyze is **synchronously**.
+Only with this information is it possible for a customer to be approved.
 
 This endpoint requests the approval from KYC process for a new customer.
 
-<aside class=warning>
+<aside class=notice>
 This KYC process is very important to protect us against money laundry and some legal processes.
+</aside>
+
+<aside class=warning>
+This process is <strong>synchronous</strong> and it's been rare to see an unapproved customer.
 </aside>
 
 ```javascript
@@ -663,7 +667,7 @@ const response = await axios.post(`/v1/network/${networkToken}/customer/${custom
 {
   "success": true,
   "message": "Customer has been approved",
-  "data": {
+  "approval": {
     "status": "active",
     "created_at": "2020-11-27T19:12:04+00:00",
     "updated_at": "2020-11-27T19:12:04+00:00"

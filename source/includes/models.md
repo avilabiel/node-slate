@@ -2,6 +2,7 @@
 
 ## Customer
 ## Seller
+## EstabilishmentFormats
 ## Phone
 ## Address
 ## Payment
