@@ -6,28 +6,29 @@ We have language bindings only in Javascript (yet)! You can view code examples i
 
 ***We want to build bridges, not walls!***
 
-# Authentication
+## How to read this documentation?
 
-> To authorize, you must to add the api_key on every request:
+Thinking about the best to our clients, we created this documentation as we would have liked if we were in your side, as client trying to connect with us. So, we have some tips to help you to absorb this content easily and faster.
 
+### Use the Searchable Menu
+In your left we have a good menu that we can even search for topics. Feel free to use it!
+
+### Content split into Entities
+We split the content into Entities and they are linked, sometimes. For example:
+
+- Go to **Payments -> Regular Payment**
+- You are going to see that a **Regular Payment requests a Customer Token**.
+- Now, you are wondering `How to get a Customer Token?`. That's a clever question!
+- So, you go to **Customer -> Basic**. Over there, you gonna see how to **Create a Customer** and **how this request returns a Customer token**. Problem solved.
+
+Definitely, `Navigate through the Entities` it's a great tip.
+
+### We provide examples
 ```javascript
-const response = await axios({
-   url: "https://api.brydge.com.br/v1/test",
-   method: "get",
-   headers: {
-      api_key: <API_KEY_FROM_YOUR_COMPANY>
-   }
-});
+const help = "Hi, I'm an example! Don't forget to pay attention to me!"
 ```
 
-> Make sure to replace `<API_KEY_FROM_YOUR_COMPANY>` with your API key.
+We provide examples to help you to connect with us faster. Pay attention to them!
 
-Brydge uses API keys to allow access to the API. Please contact us to get your API Key.
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`api_key: <API_KEY_FROM_YOUR_COMPANY>`
-
-<aside class=notice>
-You must replace <code>API_KEY_FROM_YOUR_COMPANY</code> with your personal API key.
-</aside>
+### Don't worry, we won't be offline
+Sometimes we want to understand every detail in the first read. Don't worry, you can get back here later. Use this documentation as a manual.

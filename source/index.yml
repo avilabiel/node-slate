@@ -8,6 +8,9 @@ toc_footers:
 
 includes:
    - main
+   - authentication
+   - portal
+   - environments
    - customers
    - sellers
    - payments

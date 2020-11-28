@@ -4,8 +4,8 @@
 To get a customer allowed to make payments, we should:
 
 1. Create the customer with Basic Information
-2. Provide all necessary information like Phones, Addresses, and Documents (if necessary)
-3. Then, request the approval of KYC process (synchronously).
+2. Provide all necessary information like Phones, Addresses
+3. Then, request the approval of KYC process (synchronously)
 
 Only approved Customers could make payments on Brydge Ecosystem. Here, we are dealing with the step 1.
 
