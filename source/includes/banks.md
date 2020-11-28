@@ -23,22 +23,23 @@ const response = await axios.get(
   "banks": [
     {    
       "id_bank": 1,
-      ...
+      "code": "341",
+      "name": "Itaú",
     },
     ...
   ]
 }
 ```
 
-This endpoint takes information from all Seller's bank accounts.
+This endpoint takes information from all Banks.
 
 #### HTTP Request
 
 **Sandbox**
-`GET https://register.brydge.com.br/v1/network/:networkToken/seller/:sellerToken/bank-accounts`
+`GET https://register.brydge.com.br/banks`
 
 **Production**
-`GET https://register.brydge.io/v1/network/:networkToken/seller/:sellerToken/bank-accounts`
+`GET https://register.brydge.io/banks`
 
 #### Query Parameters
 
