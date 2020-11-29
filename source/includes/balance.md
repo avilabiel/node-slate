@@ -4,7 +4,6 @@
 Since the Networks could receive money from a Payment Split, Networks should have a balance and their statements.
 
 ### Get Balance
-This endpoint retrieves the balance from the Network.
 
 ```javascript
 const networkToken = "9460246d-3c0e-4318-8874-5f7acca63efc";
@@ -29,6 +28,8 @@ const response = await axios.get(`/v1/network/${networkToken}/balance/company-ne
 }
 ```
 
+This endpoint retrieves the balance from the Network.
+
 #### HTTP Request
 
 **Sandbox**
@@ -42,7 +43,6 @@ const response = await axios.get(`/v1/network/${networkToken}/balance/company-ne
 None.
 
 ### Get Statements
-This endpoint gets the statements from the Network.
 
 ```javascript
 const networkToken = "9460246d-3c0e-4318-8874-5f7acca63efc";
@@ -82,6 +82,8 @@ const response = await axios.get(`/v1/network/${networkToken}/statements/company
 }
 ```
 
+This endpoint gets the statements from the Network.
+
 #### HTTP Request
 
 **Sandbox**
@@ -98,7 +100,6 @@ page | 1 | The current page that you want from the Statements List
 limit | 20 | How many statements' rows you want to receive per page
 
 ### Get Detailed Statements
-This endpoint gets the detailed statements from the Network.
 
 ```javascript
 const networkToken = "9460246d-3c0e-4318-8874-5f7acca63efc";
@@ -179,6 +180,8 @@ const response = await axios.get(`/v1/network/${networkToken}/statements/company
 }
 ```
 
+This endpoint gets the detailed statements from the Network.
+
 #### HTTP Request
 
 **Sandbox**
@@ -198,7 +201,6 @@ limit | 20 | How many statements' rows you want to receive per page
 Since the Sellers will receive payments or could receive money from a Payment Split, Sellers should have a balance and their statements.
 
 ### Get Balance
-This endpoint retrieves the balance from the Seller.
 
 ```javascript
 const networkToken = "9460246d-3c0e-4318-8874-5f7acca63efc";
@@ -224,6 +226,8 @@ const response = await axios.get(`/v1/network/${networkToken}/balance/seller/${s
 }
 ```
 
+This endpoint retrieves the balance from the Seller.
+
 #### HTTP Request
 
 **Sandbox**
@@ -237,7 +241,6 @@ const response = await axios.get(`/v1/network/${networkToken}/balance/seller/${s
 None.
 
 ### Get Statements
-This endpoint gets the statements from the Network.
 
 ```javascript
 const networkToken = "9460246d-3c0e-4318-8874-5f7acca63efc";
@@ -278,6 +281,8 @@ const response = await axios.get(`/v1/network/${networkToken}/statements/seller/
 }
 ```
 
+This endpoint gets the statements from the Seller.
+
 #### HTTP Request
 
 **Sandbox**
@@ -294,7 +299,6 @@ page | 1 | The current page that you want from the Statements List
 limit | 20 | How many statements' rows you want to receive per page
 
 ### Get Detailed Statements
-This endpoint gets the detailed statements from the Seller.
 
 ```javascript
 const networkToken = "9460246d-3c0e-4318-8874-5f7acca63efc";
@@ -375,6 +379,8 @@ const response = await axios.get(`/v1/network/${networkToken}/statements/seller/
   ]
 }
 ```
+
+This endpoint gets the detailed statements from the Seller.
 
 #### HTTP Request
 

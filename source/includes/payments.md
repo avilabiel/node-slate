@@ -83,7 +83,6 @@ Every entity created by Brydge API generates a token. It's safer to work with to
 None.
 
 ### Checkout Payment
-This endpoint makes a payment with a Credit Card and it doesn't require a Customer Token or Card Token, it requests all the data at the same endpoint.
 
 ```javascript
 const networkToken = "9460246d-3c0e-4318-8874-5f7acca63efc";
@@ -96,7 +95,11 @@ const response = await axios.post(
     `/v1/network/${networkToken}/payment/credit-card`, { 
     Payment: { 
 		Card: { 
-		    ...,
+		  holder_name: "Testing Name",
+		  expiration_month "02",
+		  expiration_year: "2028",
+		  card_numbe: "123412341234",
+		  security_code: "022",
 		},
 		amount: 25, 
 		currency: "BRL",
@@ -124,8 +127,8 @@ const response = await axios.post(
     }
   	}, 
   	Seller: { 
-		token: "e84ad069-ff20-4952-bf8d-40e9da9e1d59"
-	}, 
+		  token: "e84ad069-ff20-4952-bf8d-40e9da9e1d59"
+	  }, 
 }, {
     headers: {
       api_key: <API_KEY_FROM_YOUR_COMPANY>
@@ -167,6 +170,12 @@ const response = await axios.post(
   }
 }
 ```
+
+This endpoint makes a payment with a Credit Card and it doesn't require a Customer Token or Card Token, it requests all the data from both entities at the same endpoint.
+
+<aside class=notice>
+Don't forget that we need a Seller Token. That means that the Seller that will receive the payment should have passed through our KYC process, especially to avoid legal problems and money laundry.
+</aside>
 
 #### HTTP Request
 
@@ -303,7 +312,6 @@ To not split the paid amount, just remove the attribute "Receivers"
 None.
 
 ### Payment with Split - Percentage
-This endpoint makes a payment and split the money to multiple digital accounts like multiple sellers and networks. In this endpoint we can use percentages instead of amounts.
 
 ```javascript
 const networkToken = "9460246d-3c0e-4318-8874-5f7acca63efc";
@@ -382,6 +390,8 @@ const response = await axios.post(
 }
 ```
 
+This endpoint makes a payment and split the money to multiple digital accounts like multiple sellers and networks. In this endpoint we can use percentages instead of amounts.
+
 #### HTTP Request
 
 **Sandbox**
@@ -395,7 +405,6 @@ const response = await axios.post(
 None.
 
 ### Payment with Installments
-You can make payments with installments. It's easy!
 
 ```javascript
 const networkToken = "9460246d-3c0e-4318-8874-5f7acca63efc";
@@ -463,6 +472,8 @@ const response = await axios.post(
 }
 ```
 
+You can make payments with installments. It's easy!
+
 #### HTTP Request
 
 **Sandbox**
@@ -476,13 +487,6 @@ const response = await axios.post(
 None.
 
 ### Payment with Subscriptions
-You can create subscriptions. To do that, it's pretty easy! When we set a subscription, recurrently the client will be charged the same amount for the same service in a different period.
-
-The periods that we have are:
-
-- **Weekly**: Payment date + 7 days
-- **Monthly**: Payment date + 1 month
-- **Anually**: Payment date + 1 year
 
 ```javascript
 const networkToken = "9460246d-3c0e-4318-8874-5f7acca63efc";
@@ -552,6 +556,14 @@ const response = await axios.post(
   }
 }
 ```
+
+You can create subscriptions. To do that, it's pretty easy! When we set a subscription, recurrently the client will be charged the same amount for the same service in the next period.
+
+The periods that we have are:
+
+- **Weekly**: Payment date + 7 days
+- **Monthly**: Payment date + 1 month
+- **Anually**: Payment date + 1 year
 
 #### HTTP Request
 
