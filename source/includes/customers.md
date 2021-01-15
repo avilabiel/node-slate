@@ -198,7 +198,7 @@ const response = await axios.update(`/v1/network/${networkToken}/customer/${cust
 This endpoint updates information for a specific customer.
 
 <aside class=notice>
-You can pass any field from Customer's here, it's not necessarly to send all its fields.
+You can pass any Customer's fields here, it's not necessarly to send all its fields.
 </aside>
 
 #### HTTP Request
@@ -364,7 +364,7 @@ const response = await axios.update(
 This endpoint updates information for a specific customer's phone.
 
 <aside class=notice>
-You can pass any field from Customer's Phone here, it's not necessarly to send all its fields.
+You can pass any Phone's fields here, it's not necessarly to send all its fields.
 </aside>
 
 #### HTTP Request
@@ -589,7 +589,7 @@ const response = await axios.update(`/v1/network/${networkToken}/customer/${cust
 This endpoint updates information for a specific customer's address.
 
 <aside class=notice>
-You can pass any field from Customer's Address here, it's not necessarly to send all its fields.
+You can pass any Address' fields here, it's not necessarly to send all its fields.
 </aside>
 
 #### HTTP Request

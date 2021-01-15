@@ -88,7 +88,7 @@ const api = axios. axios.create({
     baseURL: brydgeSandboxURL,
 });
 
-const response = await axios.get(`/v1/network/${networkToken}/seller/${cnpj}`, {
+const response = await axios.get(`/v1/network/${networkToken}/seller/cnpj/${cnpj}`, {
     headers: {
       api_key: <API_KEY_FROM_YOUR_COMPANY>
    }
@@ -122,10 +122,10 @@ This endpoint takes information from a specific seller by CNPJ.
 #### HTTP Request
 
 **Sandbox**
-`GET https://register.brydge.com.br/v1/network/:networkToken/seller/:cnpj`
+`GET https://register.brydge.com.br/v1/network/:networkToken/seller/cnpj/:cnpj`
 
 **Production**
-`GET https://register.brydge.io/v1/network/:networkToken/seller/:cnpj`
+`GET https://register.brydge.io/v1/network/:networkToken/seller/cnpj/:cnpj`
 
 #### Query Parameters
 
@@ -224,6 +224,10 @@ const response = await axios.update(`/v1/network/${networkToken}/seller/${seller
 
 This endpoint updates the information for a specific seller.
 
+<aside class=notice>
+You can pass any Seller's field here, it's not necessarly to send all its fields.
+</aside>
+
 #### HTTP Request
 
 **Sandbox**
@@ -231,46 +235,6 @@ This endpoint updates the information for a specific seller.
 
 **Production**
 `PUT https://register.brydge.io/v1/network/:networkToken/seller/:sellerToken`
-
-#### Query Parameters
-
-None.
-
-### Delete a Seller
-
-```javascript
-const networkToken = "9460246d-3c0e-4318-8874-5f7acca63efc";
-const sellerToken = "7fc5e37f-5760-4848-bb9f-6a3e40977903";
-const brydgeSandboxURL = "https://register.brydge.com.br";
-const api = axios. axios.create({
-    baseURL: brydgeSandboxURL,
-});
-
-const response = await axios.delete(`/v1/network/${networkToken}/seller/${sellerToken}`, {
-    headers: {
-      api_key: <API_KEY_FROM_YOUR_COMPANY>
-   }
-});
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "success": true,
-  "msg": "Seller deleted"
-}
-```
-
-This endpoint deletes a specific seller.
-
-#### HTTP Request
-
-**Sandbox**
-`GET https://register.brydge.com.br/v1/network/:networkToken/seller/:sellerToken`
-
-**Production**
-`GET https://register.brydge.io/v1/network/:networkToken/seller/:sellerToken`
 
 #### Query Parameters
 
@@ -421,6 +385,10 @@ const response = await axios.update(`/v1/network/${networkToken}/seller/${seller
 ```
 
 This endpoint updates information for a specific seller's phone.
+
+<aside class=notice>
+You can pass any Phone's field here, it's not necessarly to send all its fields.
+</aside>
 
 #### HTTP Request
 
@@ -633,6 +601,10 @@ const response = await axios.update(`/v1/network/${networkToken}/seller/${seller
 
 This endpoint updates information for a specific seller's address.
 
+<aside class=notice>
+You can pass any Address' field here, it's not necessarly to send all its fields.
+</aside>
+
 #### HTTP Request
 
 **Sandbox**
@@ -802,6 +774,10 @@ const response = await axios.update(`/v1/network/${networkToken}/seller/${seller
 ```
 
 This endpoint updates information for a specific seller's owner.
+
+<aside class=notice>
+You can pass any Owner's field here, it's not necessarly to send all its fields.
+</aside>
 
 #### HTTP Request
 
