@@ -457,14 +457,15 @@ const api = axios. axios.create({
 
 const response = await axios.post(`/v1/network/${networkToken}/seller/${sellerToken}/address`, {
 	address:{
-			line1:"Av Americas, 500",
-			line2:"Citta América",
+      line1:"Av Americas",
+      line2:"500",
+      line3:"Citta América", // optional
+      neighborhood:"Barra da Tijuca",
       city:"Rio de Janeiro",
-			neighborhood:"Barra da Tijuca",
-			state:"RJ",
-			zip_code:"22845046",
-			country_code:"BR"
-		}
+      state:"RJ",
+      zip_code:"22845046",
+      country_code:"BR"
+  }
 }, {
     headers: {
       api_key: <API_KEY_FROM_YOUR_COMPANY>
@@ -477,14 +478,16 @@ const response = await axios.post(`/v1/network/${networkToken}/seller/${sellerTo
 ```json
 {
   "success": true,
-  "seller": {
-    "token": "10ab9f3d-7523-48da-b580-4ca09ff92d53",
+  "address": {
+    "token": "d881ba21-92ad-4837-a672-4821ffc83b5c",
     "CompanyNetwork": {
       "token": "9460246d-3c0e-4318-8874-5f7acca63efc"
     },
-    "street": "Av Americas, 500  Citta América",
-    "city": "Rio de Janeiro",
+    "street": "Av Americas",
+    "number": "500",
     "neighborhood": "Barra da Tijuca",
+    "complement": "Citta América",
+    "city": "Rio de Janeiro",
     "state": "RJ",
     "zip_code": "22845046",
     "country_code": "BR",
@@ -531,14 +534,16 @@ const response = await axios.get(`/v1/network/${networkToken}/seller/${sellerTok
 ```json
 {
   "success": true,
-  "seller": {
-    "token": "10ab9f3d-7523-48da-b580-4ca09ff92d53",
+  "address": {
+    "token": "d881ba21-92ad-4837-a672-4821ffc83b5c",
     "CompanyNetwork": {
       "token": "9460246d-3c0e-4318-8874-5f7acca63efc"
     },
-    "street": "Av Americas, 500  Citta América",
-    "city": "Rio de Janeiro",
+    "street": "Av Americas",
+    "number": "500",
     "neighborhood": "Barra da Tijuca",
+    "complement": "Citta América",
+    "city": "Rio de Janeiro",
     "state": "RJ",
     "zip_code": "22845046",
     "country_code": "BR",

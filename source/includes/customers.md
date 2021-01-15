@@ -445,15 +445,15 @@ const api = axios. axios.create({
 
 const response = await axios.post(`/v1/network/${networkToken}/customer/${customerToken}/address`, {
 	address:{
-			line1:"Av Americas, 500",
-      line2:"Citta América",
-      line3:"Complement 1", // optional
-			neighborhood:"Barra da Tijuca",
-			city:"Rio de Janeiro",
-			state:"RJ",
-			zip_code:"22845046",
-			country_code:"BR"
-		}
+      line1:"Av Americas",
+      line2:"500",
+      line3:"Citta América", // optional
+      neighborhood:"Barra da Tijuca",
+      city:"Rio de Janeiro",
+      state:"RJ",
+      zip_code:"22845046",
+      country_code:"BR"
+  }
 }, {
     headers: {
       api_key: <API_KEY_FROM_YOUR_COMPANY>
@@ -466,14 +466,15 @@ const response = await axios.post(`/v1/network/${networkToken}/customer/${custom
 ```json
 {
   "success": true,
-  "customer": {
+  "address": {
     "token": "d881ba21-92ad-4837-a672-4821ffc83b5c",
     "CompanyNetwork": {
       "token": "9460246d-3c0e-4318-8874-5f7acca63efc"
     },
-    "street": "Av Americas, 500  Citta América",
+    "street": "Av Americas",
+    "number": "500",
     "neighborhood": "Barra da Tijuca",
-    "complement": "Complement 1",
+    "complement": "Citta América",
     "city": "Rio de Janeiro",
     "state": "RJ",
     "zip_code": "22845046",
@@ -521,20 +522,20 @@ const response = await axios.get(`/v1/network/${networkToken}/customer/${custome
 {
   "success": true,
   "address": {
+    "token": "d881ba21-92ad-4837-a672-4821ffc83b5c",
     "CompanyNetwork": {
-      "token": "9460246d-3c0e-4318-8874-5f7acca63efb"
+      "token": "9460246d-3c0e-4318-8874-5f7acca63efc"
     },
-    "token": "cdc7ca32-2542-4c25-8945-2b7dc6f74343",
-    "street": "Av Americas, 500",
-    "complement": "Complement",
-    "number": "Citta América",
+    "street": "Av Americas",
+    "number": "500",
     "neighborhood": "Barra da Tijuca",
+    "complement": "Citta América",
     "city": "Rio de Janeiro",
     "state": "RJ",
     "zip_code": "22845046",
     "country_code": "BR",
-    "createdAt": "2021-01-15T16:36:26.000Z",
-    "updatedAt": "2021-01-15T16:36:26.000Z"
+    "updatedAt": "2020-11-27T19:10:37.198Z",
+    "createdAt": "2020-11-27T19:10:37.198Z"
   }
 }
 ```
