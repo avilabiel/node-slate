@@ -1,6 +1,7 @@
 # Sellers
 
 ## Basic
+
 To get a seller allowed to receive and make payments, we should:
 
 1. Create the seller with Basic Information
@@ -14,6 +15,7 @@ This KYC process is very important to protect us against money laundry and some 
 </aside>
 
 ### Create a Seller
+
 ```javascript
 const networkToken = "9460246d-3c0e-4318-8874-5f7acca63efc";
 const brydgeSandboxURL = "https://register.brydge.com.br";
@@ -287,7 +289,7 @@ const api = axios. axios.create({
 });
 
 const response = await axios.post(`/v1/network/${networkToken}/seller/${sellerToken}/phone`, {
-	phone:{
+	phone: {
 		 area_code: 13,
 		 country_code:55,
 		 number: "2583564"
@@ -397,7 +399,7 @@ const api = axios. axios.create({
 });
 
 const response = await axios.update(`/v1/network/${networkToken}/seller/${sellerToken}/phone/${phoneToken}`, {
-	phone:{
+	phone: {
 		 area_code: 13,
 		 country_code:55,
 		 number: "23456789"
@@ -644,6 +646,7 @@ This endpoint updates information for a specific seller's address.
 None.
 
 ## Owner
+
 The Seller's owner.
 
 ### Create a Owner
@@ -826,7 +829,7 @@ const api = axios. axios.create({
 });
 
 const response = await axios.post(
-  `/v1/network/${networkToken}/seller/${sellerToken}/document/${documentType}`, 
+  `/v1/network/${networkToken}/seller/${sellerToken}/document/${documentType}`,
   {
 	  file: <UPLOADED_FILE>
   }, {
@@ -868,6 +871,7 @@ None.
 ## Approval
 
 ### Create an Approval Request
+
 ```javascript
 const networkToken = "9460246d-3c0e-4318-8874-5f7acca63efc";
 const sellerToken = "7fc5e37f-5760-4848-bb9f-6a3e40977903";
@@ -931,6 +935,7 @@ This process is <strong>asynchronous</strong> and it could take until <strong>3 
 None.
 
 ## Bank Accounts
+
 Sellers can withdrawal money since they receive payments. For that, they need to create bank accounts.
 
 <aside class=warning>
@@ -967,7 +972,7 @@ const response = await axios.post(`/v1/network/${networkToken}/seller/${sellerTo
 ```json
 {
   "success": true,
-  "bank_account": {    
+  "bank_account": {
     "token": "cf157c3d-5295-4251-ba9d-04ffceeba971",
     "id_bank": 1,
     "agency_number": "1234",
@@ -1019,7 +1024,7 @@ const response = await axios.get(
 {
   "success": true,
   "bank_accounts": [
-    {    
+    {
       "token": "cf157c3d-5295-4251-ba9d-04ffceeba971",
       "id_bank": 1,
       "agency_number": "1234",
