@@ -675,6 +675,21 @@ Customers can make payments through their credit cards. We have the option to sa
 We follow all security protocols like PCI-DDS.
 </aside>
 
+### Testing
+
+You can use the following credit cards to test the API.
+
+| Number           | Card Brand |
+| ---------------- | ---------- |
+| 4539003370725497 | Visa       |
+| 4761340000000035 | Visa       |
+| 4716588836362104 | Visa       |
+| 4532650104137832 | Visa       |
+| 5356066320271893 | MasterCard |
+| 5201561050024014 | MasterCard |
+| 5577270004286630 | MasterCard |
+| 5138692036125449 | MasterCard |
+
 ### Create a Credit Card
 
 This endpoint creates a new customer's credit card.
@@ -711,11 +726,14 @@ const response = await axios.post(
 {
   "success": true,
   "card": {
-    "last4_digits": "************3308",
-    "token": "b44a8cd6-dd42-491e-9f52-671ef5d1ac2e",
-    "card_brand": "MasterCard",
-    "updatedAt": "2020-11-27T19:10:37.198Z",
-    "createdAt": "2020-11-27T19:10:37.198Z"
+    "active": true,
+    "expiration_month": 2,
+    "expiration_year": 2028,
+    "last4_digits": "************5497",
+    "card_brand": "Visa",
+    "token": "50f35c78-6289-4107-bb1c-56a4cdc475eb",
+    "updatedAt": "2021-01-15T16:53:43.316Z",
+    "createdAt": "2021-01-15T16:53:43.316Z"
   }
 }
 ```
@@ -762,11 +780,13 @@ const response = await axios.get(
 {
   "success": true,
   "card": {
-    "last4_digits": "************3308",
-    "token": "b44a8cd6-dd42-491e-9f52-671ef5d1ac2e",
-    "card_brand": "MasterCard",
-    "updatedAt": "2020-11-27T19:10:37.198Z",
-    "createdAt": "2020-11-27T19:10:37.198Z"
+    "token": "50f35c78-6289-4107-bb1c-56a4cdc475eb",
+    "last4_digits": "************5497",
+    "card_brand": "Visa",
+    "expiration_year": 2028,
+    "expiration_month": 2,
+    "updatedAt": "2021-01-15T16:53:43.000Z",
+    "createdAt": "2021-01-15T16:53:43.000Z"
   }
 }
 ```
@@ -809,11 +829,13 @@ const response = await axios.get(`/v1/network/${networkToken}/customer/${custome
   "success": true,
   "cards": [
     {
-      "last4_digits": "************3308",
-      "token": "b44a8cd6-dd42-491e-9f52-671ef5d1ac2e",
-      "card_brand": "MasterCard",
-      "updatedAt": "2020-11-27T19:10:37.198Z",
-      "createdAt": "2020-11-27T19:10:37.198Z"
+      "token": "50f35c78-6289-4107-bb1c-56a4cdc475eb",
+      "last4_digits": "************5497",
+      "card_brand": "Visa",
+      "expiration_year": 2028,
+      "expiration_month": 2,
+      "updatedAt": "2021-01-15T16:53:43.000Z",
+      "createdAt": "2021-01-15T16:53:43.000Z"
     },
     ...
   ]
