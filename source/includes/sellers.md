@@ -827,7 +827,7 @@ const response = await axios.post(
 {
   "success": true,
   "msg": "Upload has been made",
-  "url": "https://brydge-register-upload.s3.amazonaws.com/seller/83281jnds8231nb"
+  "url": "https://brydge-register-upload.s3.amazonaws.com/seller/83281jnds8231nb.png"
 }
 ```
 
