@@ -565,7 +565,7 @@ const api = axios. axios.create({
 
 const response = await axios.update(`/v1/network/${networkToken}/customer/${customerToken}/address/${addressToken}`, {
 	address:{
-			line1:"AAv Americas, 200",
+			line1:"Av Americas, 200",
 			line2:"Citta América",
 			zip_code:"22845046",
 			country_code:"BR"
@@ -599,6 +599,46 @@ You can pass any field from Customer's Address here, it's not necessarly to send
 
 **Production**
 `PUT https://register.brydge.io/v1//network/:networkToken/customer/:customerToken/address/:addressToken`
+
+#### Query Parameters
+
+None.
+
+### Delete a Address
+
+```javascript
+const networkToken = "9460246d-3c0e-4318-8874-5f7acca63efc";
+const addressToken = "d881ba21-92ad-4837-a672-4821ffc83b5c";
+const brydgeSandboxURL = "https://register.brydge.com.br";
+const api = axios. axios.create({
+    baseURL: brydgeSandboxURL,
+});
+
+const response = await axios.update(`/v1/network/${networkToken}/customer/${customerToken}/address/${addressToken}`, {
+    headers: {
+      api_key: <API_KEY_FROM_YOUR_COMPANY>
+   }
+});
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "status": "success",
+  "msg": "Customer's address was deleted"
+}
+```
+
+This endpoint deletes a specific customer's address.
+
+#### HTTP Request
+
+**Sandbox**<br />
+`DELETE https://register.brydge.com.br/v1//network/:networkToken/customer/:customerToken/address/:addressToken`
+
+**Production**<br />
+`DELETE https://register.brydge.io/v1//network/:networkToken/customer/:customerToken/address/:addressToken`
 
 #### Query Parameters
 
@@ -675,21 +715,6 @@ Customers can make payments through their credit cards. We have the option to sa
 We follow all security protocols like PCI-DDS.
 </aside>
 
-### Testing
-
-You can use the following credit cards to test the API.
-
-| Number           | Card Brand |
-| ---------------- | ---------- |
-| 4539003370725497 | Visa       |
-| 4761340000000035 | Visa       |
-| 4716588836362104 | Visa       |
-| 4532650104137832 | Visa       |
-| 5356066320271893 | MasterCard |
-| 5201561050024014 | MasterCard |
-| 5577270004286630 | MasterCard |
-| 5138692036125449 | MasterCard |
-
 ### Create a Credit Card
 
 This endpoint creates a new customer's credit card.
@@ -753,6 +778,21 @@ The Customer must be approved to use this endpoint.
 #### Query Parameters
 
 None.
+
+#### Testing
+
+You can use the following credit cards to test the API.
+
+| Number           | Card Brand |
+| ---------------- | ---------- |
+| 4539003370725497 | Visa       |
+| 4761340000000035 | Visa       |
+| 4716588836362104 | Visa       |
+| 4532650104137832 | Visa       |
+| 5356066320271893 | MasterCard |
+| 5201561050024014 | MasterCard |
+| 5577270004286630 | MasterCard |
+| 5138692036125449 | MasterCard |
 
 ### Get a Credit Card
 
