@@ -136,6 +136,7 @@ const response = await axios.get(`/v1/network/${networkToken}/statements/company
       },
       "Payment": {
         "amount": 25,
+        "installments": 1,
         "transaction_id": "b2d8a8f52e0847168bde818632a0aba2",
         "transaction_status": "succeeded",
         "receivers": [
@@ -173,6 +174,7 @@ const response = await axios.get(`/v1/network/${networkToken}/statements/company
           "token": "b44a8cd6-dd42-491e-9f52-671ef5d1ac2e",
           "card_brand": "MasterCard"
         },
+        "Subscription": null,
         "fees": 1
       }
     },
@@ -185,10 +187,10 @@ This endpoint gets the detailed statements from the Network.
 
 #### HTTP Request
 
-**Sandbox**
+**Sandbox**<br />
 `GET https://balance.brydge.com.br/v1/network/${networkToken}/statements/company-network`
 
-**Production**
+**Production**<br />
 `GET https://balance.brydge.io/v1/network/${networkToken}/statements/company-network`
 
 #### Query Parameters
@@ -197,6 +199,112 @@ This endpoint gets the detailed statements from the Network.
 | --------- | ------- | ------------------------------------------------------- |
 | page      | 1       | The current page that you want from the Statements List |
 | limit     | 20      | How many statements' rows you want to receive per page  |
+
+### Sum Payments from Last Months
+
+```javascript
+const networkToken = "9460246d-3c0e-4318-8874-5f7acca63efc";
+const monthsQuantity = 2;
+const brydgeSandboxURL = "https://balance.brydge.com.br";
+const api = axios. axios.create({
+    baseURL: brydgeSandboxURL,
+});
+
+const response = await axios.get(
+  `/v1/network/${networkToken}/statements/company-network/sum/months/${monthsQuantity}/last`, {
+    headers: {
+      api_key: <API_KEY_FROM_YOUR_COMPANY>
+   }
+});
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "success": true,
+  "sum": [
+    [
+      {
+        "month": January,
+        "quantity": 157
+      }
+    ],
+    [
+      {
+        "month": December,
+        "quantity": 233
+      }
+    ]
+  ]
+}
+```
+
+This endpoint summarizes the payments from the last months from a specific Network.
+
+#### HTTP Request
+
+**Sandbox**<br />
+`GET https://balance.brydge.com.br/v1/network/:networkToken/statements/company-network/sum/months/:monthsQuantity/last`
+
+**Production**<br />
+`GET https://balance.brydge.io/v1/network/:networkToken/statements/company-network/sum/months/:monthsQuantity/last`
+
+#### Query Parameters
+
+None.
+
+### Sum Payments by Period
+
+```javascript
+const networkToken = "9460246d-3c0e-4318-8874-5f7acca63efc";
+const type = "day";
+const brydgeSandboxURL = "https://balance.brydge.com.br";
+const api = axios. axios.create({
+    baseURL: brydgeSandboxURL,
+});
+
+const response = await axios.get(`/v1/network/${networkToken}/statements/company-network/sum/${type}`, {
+    headers: {
+      api_key: <API_KEY_FROM_YOUR_COMPANY>
+   }
+});
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "success": true,
+  "sum": {
+    "total": 25,
+    "quantity": 1
+  }
+}
+```
+
+This endpoint summarizes the payments made in a Network on this period.
+
+#### Periods List
+
+| Type | Description |
+| ------ | ----------------- |
+| daily | It summarizes all payments made on this current day |
+| weekly | It summarizes all payments made on this current week |
+| monthly | It summarizes all payments made on this current month |
+| total | It summarizes all payments made all the time |
+
+#### HTTP Request
+
+**Sandbox**<br />
+`GET https://balance.brydge.com.br/v1/network/:networkToken/statements/company-network/sum/:type`
+
+**Production**<br />
+`GET https://balance.brydge.io/v1/network/:networkToken/statements/company-network/sum/:type`
+
+#### Query Parameters
+
+None.
 
 ## Sellers
 
@@ -337,6 +445,7 @@ const response = await axios.get(`/v1/network/${networkToken}/statements/seller/
       },
       "Payment": {
         "amount": 25,
+        "installments": 1,
         "transaction_id": "b2d8a8f52e0847168bde818632a0aba2",
         "transaction_status": "succeeded",
         "receivers": [
@@ -374,6 +483,7 @@ const response = await axios.get(`/v1/network/${networkToken}/statements/seller/
           "token": "b44a8cd6-dd42-491e-9f52-671ef5d1ac2e",
           "card_brand": "MasterCard"
         },
+        "Subscription": null,
         "fees": 1
       }
     },
@@ -531,106 +641,3 @@ This endpoint gets the detailed statements from the Customer.
 | --------- | ------- | ------------------------------------------------------- |
 | page      | 1       | The current page that you want from the Statements List |
 | limit     | 20      | How many statements' rows you want to receive per page  |
-
-## Get last months of statements
-
-```javascript
-const networkToken = "9460246d-3c0e-4318-8874-5f7acca63efc";
-const monthsQuantity = 2;
-const brydgeSandboxURL = "https://balance.brydge.com.br";
-const api = axios. axios.create({
-    baseURL: brydgeSandboxURL,
-});
-
-const response = await axios.get(`/v1/network/${networkToken}/statements/company-network/sum/months/${monthsQuantity}/last`, {
-    headers: {
-      api_key: <API_KEY_FROM_YOUR_COMPANY>
-   }
-});
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "success": true,
-  "sum": [
-    [
-      {
-        "month": January,
-        "quantity": 157
-      }
-    ],
-    [
-      {
-        "month": December,
-        "quantity": 233
-      }
-    ]
-  ]
-}
-```
-
-This endpoint gets the statements from the last months
-
-#### HTTP Request
-
-**Sandbox**
-`GET https://balance.brydge.com.br/v1/network/:networkToken/statements/company-network/sum/months/:monthsQuantity/last`
-
-**Production**
-`GET https://balance.brydge.io/v1/network/:networkToken/statements/company-network/sum/months/:monthsQuantity/last`
-
-#### Query Parameters
-
-None.
-
-## Get summary statements by period
-
-```javascript
-const networkToken = "9460246d-3c0e-4318-8874-5f7acca63efc";
-const type = "day";
-const brydgeSandboxURL = "https://balance.brydge.com.br";
-const api = axios. axios.create({
-    baseURL: brydgeSandboxURL,
-});
-
-const response = await axios.get(`/v1/network/${networkToken}/statements/company-network/sum/${type}`, {
-    headers: {
-      api_key: <API_KEY_FROM_YOUR_COMPANY>
-   }
-});
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "success": true,
-  "sum": {
-    "total": 25,
-    "quantity": 1
-  }
-}
-```
-
-This endpoint gets the summary of statements by period.
-
-Types of periods:
-
-- daily
-- weekly
-- monthly
-- total
-
-#### HTTP Request
-
-**Sandbox**
-`GET https://balance.brydge.com.br/v1/network/:networkToken/statements/company-network/sum/:type`
-
-**Production**
-`GET https://balance.brydge.io/v1/network/:networkToken/statements/company-network/sum/:type`
-
-#### Query Parameters
-
-None.

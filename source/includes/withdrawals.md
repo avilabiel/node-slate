@@ -52,6 +52,10 @@ The seller or network <strong>must</strong> have balance to make the withdrawal.
 The request could be totally processed in <strong>3 business days</strong>.
 </aside>
 
+<aside class=warning>
+It's import to notice that all withdrawals are automatic by default. In other words, even if you don't use this endpoint, when the money from payments becomes available and the Seller has a bank account saved, a withdrawal request is made automatically.
+</aside>
+
 #### HTTP Request
 
 **Sandbox**
@@ -101,6 +105,13 @@ const response = await axios.get(
   }
 }
 ```
+#### Statuses List
+
+| Status | Description |
+| -------- | -------------------------- |
+| succeeded | Withdrawal Finished |
+| rejected | Withdrawal request was rejected |
+
 
 #### HTTP Request
 
@@ -142,30 +153,26 @@ const response = await axios.get(
   "success": true,
   "withdrawals": [
     {
-      "withdrawal": {
-        "BankAccount": {
-          "token": "2f83dec532534001be98acf8dfec91d8"
-        },
-        "token": "f16410e7-8080-41f1-a3ee-dbb66c3dbefc",
-        "status": "pending",
-        "amount": 0.01,
-        "created_at": "2021-01-13T20:05:38.000Z",
-        "updated_at": "2021-01-13T20:05:38.000Z",
-        "failed_at": null
-      }
+      "BankAccount": {
+        "token": "0e0ce748-d99f-44c2-be5d-df2ce331b8bc"
+      },
+      "token": "c961c8e9-0fdd-4e5c-9406-3e147ea7ed96",
+      "status": "pending",
+      "amount": 0.01,
+      "created_at": "2021-01-13T20:05:38.000Z",
+      "updated_at": "2021-01-13T20:05:38.000Z",
+      "failed_at": null
     },
     {
-      "withdrawal": {
-        "BankAccount": {
-          "token": "267sdec532534001be98acf8dfec91d9"
-        },
-        "token": "62e77e05-a0aa-4082-86a3-e9404ab0ee5f",
-        "status": "pending",
-        "amount": 0.01,
-        "created_at": "2021-01-15T16:09:13.000Z",
-        "updated_at": "2021-01-15T16:09:13.000Z",
-        "failed_at": null
-      }
+      "BankAccount": {
+        "token": "267sdec532534001be98acf8dfec91d9"
+      },
+      "token": "5c4a6889-f529-4128-999c-3122665f0293",
+      "status": "pending",
+      "amount": 0.01,
+      "created_at": "2021-01-15T16:09:13.000Z",
+      "updated_at": "2021-01-15T16:09:13.000Z",
+      "failed_at": null
     }
   ]
 }
@@ -212,30 +219,26 @@ const response = await axios.get(
   "success": true,
   "withdrawals": [
     {
-      "withdrawal": {
-        "BankAccount": {
-          "token": "0e0ce748-d99f-44c2-be5d-df2ce331b8bc"
-        },
-        "token": "c961c8e9-0fdd-4e5c-9406-3e147ea7ed96",
-        "status": "pending",
-        "amount": 0.01,
-        "created_at": "2021-01-13T20:05:38.000Z",
-        "updated_at": "2021-01-13T20:05:38.000Z",
-        "failed_at": null
-      }
+      "BankAccount": {
+        "token": "0e0ce748-d99f-44c2-be5d-df2ce331b8bc"
+      },
+      "token": "c961c8e9-0fdd-4e5c-9406-3e147ea7ed96",
+      "status": "pending",
+      "amount": 0.01,
+      "created_at": "2021-01-13T20:05:38.000Z",
+      "updated_at": "2021-01-13T20:05:38.000Z",
+      "failed_at": null
     },
     {
-      "withdrawal": {
-        "BankAccount": {
-          "token": "267sdec532534001be98acf8dfec91d9"
-        },
-        "token": "5c4a6889-f529-4128-999c-3122665f0293",
-        "status": "pending",
-        "amount": 0.01,
-        "created_at": "2021-01-15T16:09:13.000Z",
-        "updated_at": "2021-01-15T16:09:13.000Z",
-        "failed_at": null
-      }
+      "BankAccount": {
+        "token": "267sdec532534001be98acf8dfec91d9"
+      },
+      "token": "5c4a6889-f529-4128-999c-3122665f0293",
+      "status": "pending",
+      "amount": 0.01,
+      "created_at": "2021-01-15T16:09:13.000Z",
+      "updated_at": "2021-01-15T16:09:13.000Z",
+      "failed_at": null
     }
   ]
 }
