@@ -316,7 +316,7 @@ This endpoint makes a payment and split the money to multiple digital accounts l
 <aside class=notice>
 Brydge will charge fees for every payment that has been made on Brydge API. However, Brydge API calculates the proper amounts that should be split right after Brydge has charged the fees.
 
-Ex: 25 R$ split to two Sellers. Brydge got R$ 1. Now we have R$ 24. But, the split rules say:
+E.g.: 25 R$ split to two Sellers. Brydge got R$ 1. Now we have R$ 24. But, the split rules say:
 
 Receivers: [
 {

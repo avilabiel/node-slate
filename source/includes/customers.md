@@ -1,6 +1,7 @@
 # Customers
 
 ## Basic
+
 To get a customer allowed to make payments, we should:
 
 1. Create the customer with Basic Information
@@ -75,7 +76,7 @@ const api = axios. axios.create({
     baseURL: brydgeSandboxURL,
 });
 
-const response = await axios.get(`/v1/network/${networkToken}/customer/${cpf}`, {
+const response = await axios.get(`/v1/network/${networkToken}/customer/cpf/${cpf}`, {
     headers: {
       api_key: <API_KEY_FROM_YOUR_COMPANY>
    }
@@ -105,10 +106,10 @@ This endpoint takes information from a specific customer by CPF.
 #### HTTP Request
 
 **Sandbox**
-`GET https://register.brydge.com.br/v1/network/:networkToken/customer/:cpf`
+`GET https://register.brydge.com.br/v1/network/:networkToken/customer/cpf/:cpf`
 
 **Production**
-`GET https://register.brydge.io/v1/network/:networkToken/customer/:cpf`
+`GET https://register.brydge.io/v1/network/:networkToken/customer/cpf/:cpf`
 
 #### Query Parameters
 
@@ -175,11 +176,8 @@ const api = axios. axios.create({
 
 const response = await axios.update(`/v1/network/${networkToken}/customer/${customerToken}`, {
 	customer: {
-        cpf: "41235235214",
-        first_name: "Rafael",
-        last_name: "Silva",
-        email: "teste@gmail.com",
-        birthdate: "1985-03-21"
+      first_name: "Rafael 2",
+      email: "teste2@gmail.com",
 	}
 }, {
     headers: {
@@ -199,6 +197,10 @@ const response = await axios.update(`/v1/network/${networkToken}/customer/${cust
 
 This endpoint updates information for a specific customer.
 
+<aside class=notice>
+You can pass any Customer's fields here, it's not necessarly to send all its fields.
+</aside>
+
 #### HTTP Request
 
 **Sandbox**
@@ -206,46 +208,6 @@ This endpoint updates information for a specific customer.
 
 **Production**
 `PUT https://register.brydge.io/v1/network/:networkToken/customer/:customerToken`
-
-#### Query Parameters
-
-None.
-
-### Delete a Customer
-
-```javascript
-const networkToken = "9460246d-3c0e-4318-8874-5f7acca63efc";
-const customerToken = "382184a-382d-hsa3-4882-849c932jduw";
-const brydgeSandboxURL = "https://register.brydge.com.br";
-const api = axios. axios.create({
-    baseURL: brydgeSandboxURL,
-});
-
-const response = await axios.delete(`/v1/network/${networkToken}/customer/${customerToken}`, {
-    headers: {
-      api_key: <API_KEY_FROM_YOUR_COMPANY>
-   }
-});
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "success": true,
-  "msg": "Customer was deleted"
-}
-```
-
-This endpoint delete a specific customer.
-
-#### HTTP Request
-
-**Sandbox**
-`DELETE https://register.brydge.com.br/v1/network/:networkToken/customer/:customerToken`
-
-**Production**
-`DELET https://register.brydge.io/v1/network/:networkToken/customer/:customerToken`
 
 #### Query Parameters
 
@@ -264,9 +226,9 @@ const api = axios. axios.create({
 });
 
 const response = await axios.post(
-  `/v1/network/${networkToken}/customer/${customerToken}/phone`, 
+  `/v1/network/${networkToken}/customer/${customerToken}/phone`,
   {
-	phone:{
+	phone: {
 		 area_code: 13,
 		 country_code:55,
 		 number: "2583564"
@@ -324,7 +286,7 @@ const api = axios. axios.create({
 });
 
 const response = await axios.get(
-  `/v1/network/${networkToken}/customer/${customerToken}/phone/${phoneToken}`, 
+  `/v1/network/${networkToken}/customer/${customerToken}/phone/${phoneToken}`,
   {
     headers: {
       api_key: <API_KEY_FROM_YOUR_COMPANY>
@@ -378,11 +340,9 @@ const api = axios. axios.create({
 });
 
 const response = await axios.update(
-  `/v1/network/${networkToken}/customer/${customerToken}/phone/${phoneToken}`, 
+  `/v1/network/${networkToken}/customer/${customerToken}/phone/${phoneToken}`,
   {
-	phone:{
-		 area_code: 13,
-		 country_code:55,
+	phone: {
 		 number: "23456789"
 	 }
 }, {
@@ -402,6 +362,10 @@ const response = await axios.update(
 ```
 
 This endpoint updates information for a specific customer's phone.
+
+<aside class=notice>
+You can pass any Phone's fields here, it's not necessarly to send all its fields.
+</aside>
 
 #### HTTP Request
 
@@ -427,7 +391,7 @@ const api = axios. axios.create({
 });
 
 const response = await axios.delete(
-  `/v1/network/${networkToken}/customer/${customerToken}/phone/${phoneToken}`, 
+  `/v1/network/${networkToken}/customer/${customerToken}/phone/${phoneToken}`,
   {
     headers: {
       api_key: <API_KEY_FROM_YOUR_COMPANY>
@@ -446,13 +410,22 @@ const response = await axios.delete(
 
 This endpoint deletes a specific customer's phone.
 
+<aside class=warning>
+Only phones from not <strong>approved</strong> customers can be deleted. If the customer is already approved, this endpoint will return this message:
+<br ><br >
+<i>
+"This phone cannot be deleted because this customer is already approved. Try to update it"
+</i>
+
+</aside>
+
 #### HTTP Request
 
 **Sandbox**
-`DELETE https://register.brydge.com.br/v1//network/:networkToken/customer/:customerToken/phone/:phoneToken`
+`DELETE https://register.brydge.com.br/v1/network/:networkToken/customer/:customerToken/phone/:phoneToken`
 
 **Production**
-`DELETE https://register.brydge.io/v1//network/:networkToken/customer/:customerToken/phone/:phoneToken`
+`DELETE https://register.brydge.io/v1/network/:networkToken/customer/:customerToken/phone/:phoneToken`
 
 #### Query Parameters
 
@@ -472,14 +445,15 @@ const api = axios. axios.create({
 
 const response = await axios.post(`/v1/network/${networkToken}/customer/${customerToken}/address`, {
 	address:{
-			line1:"Av Americas, 500",
-			line2:"Citta América",
-			neighborhood:"Barra da Tijuca",
-			city:"Rio de Janeiro",
-			state:"RJ",
-			zip_code:"22845046",
-			country_code:"BR"
-		}
+      line1:"Av Americas",
+      line2:"500",
+      line3:"Citta América", // optional
+      neighborhood:"Barra da Tijuca",
+      city:"Rio de Janeiro",
+      state:"RJ",
+      zip_code:"22845046",
+      country_code:"BR"
+  }
 }, {
     headers: {
       api_key: <API_KEY_FROM_YOUR_COMPANY>
@@ -492,13 +466,15 @@ const response = await axios.post(`/v1/network/${networkToken}/customer/${custom
 ```json
 {
   "success": true,
-  "customer": {
+  "address": {
     "token": "d881ba21-92ad-4837-a672-4821ffc83b5c",
     "CompanyNetwork": {
       "token": "9460246d-3c0e-4318-8874-5f7acca63efc"
     },
-    "street": "Av Americas, 500  Citta América",
+    "street": "Av Americas",
+    "number": "500",
     "neighborhood": "Barra da Tijuca",
+    "complement": "Citta América",
     "city": "Rio de Janeiro",
     "state": "RJ",
     "zip_code": "22845046",
@@ -545,13 +521,15 @@ const response = await axios.get(`/v1/network/${networkToken}/customer/${custome
 ```json
 {
   "success": true,
-  "customer": {
+  "address": {
     "token": "d881ba21-92ad-4837-a672-4821ffc83b5c",
     "CompanyNetwork": {
       "token": "9460246d-3c0e-4318-8874-5f7acca63efc"
     },
-    "street": "Av Americas, 500  Citta América",
+    "street": "Av Americas",
+    "number": "500",
     "neighborhood": "Barra da Tijuca",
+    "complement": "Citta América",
     "city": "Rio de Janeiro",
     "state": "RJ",
     "zip_code": "22845046",
@@ -588,11 +566,8 @@ const api = axios. axios.create({
 
 const response = await axios.update(`/v1/network/${networkToken}/customer/${customerToken}/address/${addressToken}`, {
 	address:{
-			line1:"AAv Americas, 200",
+			line1:"Av Americas, 200",
 			line2:"Citta América",
-			city:"Rio de Janeiro",
-			state:"RJ",
-		  neighborhood:"Barra da Tijuca",
 			zip_code:"22845046",
 			country_code:"BR"
 		}
@@ -614,6 +589,10 @@ const response = await axios.update(`/v1/network/${networkToken}/customer/${cust
 
 This endpoint updates information for a specific customer's address.
 
+<aside class=notice>
+You can pass any Address' fields here, it's not necessarly to send all its fields.
+</aside>
+
 #### HTTP Request
 
 **Sandbox**
@@ -626,9 +605,50 @@ This endpoint updates information for a specific customer's address.
 
 None.
 
+### Delete a Address
+
+```javascript
+const networkToken = "9460246d-3c0e-4318-8874-5f7acca63efc";
+const addressToken = "d881ba21-92ad-4837-a672-4821ffc83b5c";
+const brydgeSandboxURL = "https://register.brydge.com.br";
+const api = axios. axios.create({
+    baseURL: brydgeSandboxURL,
+});
+
+const response = await axios.update(`/v1/network/${networkToken}/customer/${customerToken}/address/${addressToken}`, {
+    headers: {
+      api_key: <API_KEY_FROM_YOUR_COMPANY>
+   }
+});
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "status": "success",
+  "msg": "Customer's address was deleted"
+}
+```
+
+This endpoint deletes a specific customer's address.
+
+#### HTTP Request
+
+**Sandbox**<br />
+`DELETE https://register.brydge.com.br/v1//network/:networkToken/customer/:customerToken/address/:addressToken`
+
+**Production**<br />
+`DELETE https://register.brydge.io/v1//network/:networkToken/customer/:customerToken/address/:addressToken`
+
+#### Query Parameters
+
+None.
+
 ## Approval
 
 ### Create an Approval Request
+
 ```javascript
 const networkToken = "9460246d-3c0e-4318-8874-5f7acca63efc";
 const customerToken = "d881ba21-92ad-4837-a672-4821ffc83b5c";
@@ -689,6 +709,7 @@ This process is <strong>synchronous</strong> and it's been rare to see an unappr
 None.
 
 ## Credit Cards
+
 Customers can make payments through their credit cards. We have the option to save the Credit Card information and use Card tokens. It's faster and safer.
 
 <aside class=warning>
@@ -696,6 +717,7 @@ We follow all security protocols like PCI-DDS.
 </aside>
 
 ### Create a Credit Card
+
 This endpoint creates a new customer's credit card.
 
 ```javascript
@@ -707,7 +729,7 @@ const api = axios. axios.create({
 });
 
 const response = await axios.post(
-  `/v1/network/${networkToken}/customer/${customerToken}/credit-card`, 
+  `/v1/network/${networkToken}/customer/${customerToken}/credit-card`,
   {
 	  card: {
 		  holder_name: "Test Name",
@@ -730,11 +752,14 @@ const response = await axios.post(
 {
   "success": true,
   "card": {
-    "last4_digits": "************3308",
-    "token": "b44a8cd6-dd42-491e-9f52-671ef5d1ac2e",
-    "card_brand": "MasterCard",
-    "updatedAt": "2020-11-27T19:10:37.198Z",
-    "createdAt": "2020-11-27T19:10:37.198Z"
+    "active": true,
+    "expiration_month": 2,
+    "expiration_year": 2028,
+    "last4_digits": "************5497",
+    "card_brand": "Visa",
+    "token": "50f35c78-6289-4107-bb1c-56a4cdc475eb",
+    "updatedAt": "2021-01-15T16:53:43.316Z",
+    "createdAt": "2021-01-15T16:53:43.316Z"
   }
 }
 ```
@@ -742,7 +767,6 @@ const response = await axios.post(
 <aside class=warning>
 The Customer must be approved to use this endpoint.
 </aside>
-
 
 #### HTTP Request
 
@@ -756,7 +780,23 @@ The Customer must be approved to use this endpoint.
 
 None.
 
+#### Testing
+
+You can use the following credit cards to test the API.
+
+| Number           | Card Brand |
+| ---------------- | ---------- |
+| 4539003370725497 | Visa       |
+| 4761340000000035 | Visa       |
+| 4716588836362104 | Visa       |
+| 4532650104137832 | Visa       |
+| 5356066320271893 | MasterCard |
+| 5201561050024014 | MasterCard |
+| 5577270004286630 | MasterCard |
+| 5138692036125449 | MasterCard |
+
 ### Get a Credit Card
+
 ```javascript
 const networkToken = "9460246d-3c0e-4318-8874-5f7acca63efc";
 const customerToken = "382184a-382d-hsa3-4882-849c932jduw";
@@ -767,7 +807,7 @@ const api = axios. axios.create({
 });
 
 const response = await axios.get(
-  `/v1/network/${networkToken}/customer/${customerToken}/credit-card/${creditCardToken}`, 
+  `/v1/network/${networkToken}/customer/${customerToken}/credit-card/${creditCardToken}`,
   {
     headers: {
       api_key: <API_KEY_FROM_YOUR_COMPANY>
@@ -781,11 +821,13 @@ const response = await axios.get(
 {
   "success": true,
   "card": {
-    "last4_digits": "************3308",
-    "token": "b44a8cd6-dd42-491e-9f52-671ef5d1ac2e",
-    "card_brand": "MasterCard",
-    "updatedAt": "2020-11-27T19:10:37.198Z",
-    "createdAt": "2020-11-27T19:10:37.198Z"
+    "token": "50f35c78-6289-4107-bb1c-56a4cdc475eb",
+    "last4_digits": "************5497",
+    "card_brand": "Visa",
+    "expiration_year": 2028,
+    "expiration_month": 2,
+    "updatedAt": "2021-01-15T16:53:43.000Z",
+    "createdAt": "2021-01-15T16:53:43.000Z"
   }
 }
 ```
@@ -828,11 +870,13 @@ const response = await axios.get(`/v1/network/${networkToken}/customer/${custome
   "success": true,
   "cards": [
     {
-      "last4_digits": "************3308",
-      "token": "b44a8cd6-dd42-491e-9f52-671ef5d1ac2e",
-      "card_brand": "MasterCard",
-      "updatedAt": "2020-11-27T19:10:37.198Z",
-      "createdAt": "2020-11-27T19:10:37.198Z"
+      "token": "50f35c78-6289-4107-bb1c-56a4cdc475eb",
+      "last4_digits": "************5497",
+      "card_brand": "Visa",
+      "expiration_year": 2028,
+      "expiration_month": 2,
+      "updatedAt": "2021-01-15T16:53:43.000Z",
+      "createdAt": "2021-01-15T16:53:43.000Z"
     },
     ...
   ]
@@ -854,6 +898,7 @@ This endpoint takes all customer's credit cards.
 None.
 
 ### Delete a Credit Card
+
 This endpoint deletes a specific customer's credit card.
 
 ```javascript
@@ -866,7 +911,7 @@ const api = axios. axios.create({
 });
 
 const response = await axios.delete(
-  `/v1/network/${networkToken}/customer/${customerToken}/credit-card/${creditCardToken}`, 
+  `/v1/network/${networkToken}/customer/${customerToken}/credit-card/${creditCardToken}`,
   {
     headers: {
       api_key: <API_KEY_FROM_YOUR_COMPANY>
