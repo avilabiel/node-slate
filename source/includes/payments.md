@@ -32,6 +32,13 @@ const response = await axios.get(
 }
 ```
 
+This endpoint returns the final amount per installment considering fees for:
+
+- Card Brand
+- Number of Installments
+
+This endpoint is very useful when the Network or Seller does want to charge the additional fees from installments to their client.
+
 #### HTTP Request
 
 **Sandbox**
@@ -105,8 +112,9 @@ const response = await axios.post(
         "finalAmount": 4.8
       }
     ],
+    "Subscription": null,
     "updatedAt": "2020-11-26T15:41:48.966Z",
-    "createdAt": "2020-11-26T15:41:48.966Z"
+    "createdAt": "2020-11-26T15:41:48.966Z",
   }
 }
 ```
@@ -208,6 +216,7 @@ const response = await axios.post(
         "finalAmount": 4.8
       }
     ],
+    "Subscription": null,
     "updatedAt": "2020-11-26T15:41:48.966Z",
     "createdAt": "2020-11-26T15:41:48.966Z"
   }
@@ -305,6 +314,7 @@ const response = await axios.post(
         "finalAmount": 4.8
       }
     ],
+    "Subscription": null,
     "updatedAt": "2020-11-26T15:41:48.966Z",
     "createdAt": "2020-11-26T15:41:48.966Z"
   }
@@ -428,6 +438,7 @@ const response = await axios.post(
         "finalAmount": 4.8
       }
     ],
+    "Subscription": null,
     "updatedAt": "2020-11-26T15:41:48.966Z",
     "createdAt": "2020-11-26T15:41:48.966Z"
   }
@@ -510,6 +521,7 @@ const response = await axios.post(
         "finalAmount": 4.8
       }
     ],
+    "Subscription": null,
     "updatedAt": "2020-11-26T15:41:48.966Z",
     "createdAt": "2020-11-26T15:41:48.966Z"
   }
@@ -609,7 +621,7 @@ You can create subscriptions. To do that, it's pretty easy! When we set a subscr
 | -------------------- | ---------------------- |
 | Weekly               | Payment date + 7 days  |
 | Monthly              | Payment date + 1 month |
-| Anually              | Payment date + 1 year  |
+| Annually             | Payment date + 1 year  |
 
 #### HTTP Request
 
