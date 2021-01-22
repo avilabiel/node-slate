@@ -795,6 +795,17 @@ You can use the following credit cards to test the API.
 | 5577270004286630 | MasterCard |
 | 5138692036125449 | MasterCard |
 
+#### Card Brand's List
+These are the allowed card brands on Brydge.
+
+| Value |
+| ---------- |
+| Mastercard |
+| Visa |
+| Elo |
+| American Express |
+| Hipercard |
+
 ### Get a Credit Card
 
 ```javascript
