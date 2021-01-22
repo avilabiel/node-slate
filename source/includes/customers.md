@@ -633,6 +633,14 @@ const response = await axios.update(`/v1/network/${networkToken}/customer/${cust
 
 This endpoint deletes a specific customer's address.
 
+<aside class=warning>
+Only addresses from not <strong>approved</strong> customers can be deleted. If the customer is already approved, this endpoint will return this message:
+<br ><br >
+<i>
+"This address cannot be deleted because this customer is already approved. Try to update it"
+</i>
+</aside>
+
 #### HTTP Request
 
 **Sandbox**<br />
@@ -794,6 +802,17 @@ You can use the following credit cards to test the API.
 | 5201561050024014 | MasterCard |
 | 5577270004286630 | MasterCard |
 | 5138692036125449 | MasterCard |
+
+#### Card Brand's List
+These are the allowed card brands on Brydge.
+
+| Value |
+| ---------- |
+| Mastercard |
+| Visa |
+| Elo |
+| American Express |
+| Hipercard |
 
 ### Get a Credit Card
 

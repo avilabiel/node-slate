@@ -541,6 +541,14 @@ const response = await axios.delete(`/v1/network/${networkToken}/seller/${seller
 
 This endpoint delete a specific seller's phone.
 
+<aside class=warning>
+Only phones from not <strong>approved</strong> sellers can be deleted. If the seller is already approved, this endpoint will return this message:
+<br ><br >
+<i>
+"This phone cannot be deleted because this seller is already approved. Try to update it"
+</i>
+</aside>
+
 #### HTTP Request
 
 **Sandbox**
@@ -727,6 +735,55 @@ You can pass any Address' field here, it's not necessarly to send all its fields
 
 **Production**
 `PUT https://register.brydge.io/v1//network/:networkToken/seller/:sellerToken/address/:addressToken`
+
+#### Query Parameters
+
+None.
+
+### Delete a Address
+
+```javascript
+const networkToken = "9460246d-3c0e-4318-8874-5f7acca63efc";
+const sellerToken = "7fc5e37f-5760-4848-bb9f-6a3e40977903";
+const addressToken = "10ab9f3d-7523-48da-b580-4ca09ff92d53";
+const brydgeSandboxURL = "https://register.brydge.com.br";
+const api = axios. axios.create({
+    baseURL: brydgeSandboxURL,
+});
+
+const response = await axios.delete(`/v1/network/${networkToken}/seller/${sellerToken}/address/${addressToken}`, {
+    headers: {
+      api_key: <API_KEY_FROM_YOUR_COMPANY>
+   }
+});
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "status": "success",
+  "msg": "Seller's address was deleted"
+}
+```
+
+This endpoint deletes a specific seller's address.
+
+<aside class=warning>
+Only addresses from not <strong>approved</strong> sellers can be deleted. If the seller is already approved, this endpoint will return this message:
+<br ><br >
+<i>
+"This address cannot be deleted because this seller is already approved. Try to update it"
+</i>
+</aside>
+
+#### HTTP Request
+
+**Sandbox**
+`DELETE https://register.brydge.com.br/v1//network/:networkToken/seller/:sellerToken/address/:addressToken`
+
+**Production**
+`DELETE https://register.brydge.io/v1//network/:networkToken/seller/:sellerToken/address/:addressToken`
 
 #### Query Parameters
 
