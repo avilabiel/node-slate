@@ -633,6 +633,14 @@ const response = await axios.update(`/v1/network/${networkToken}/customer/${cust
 
 This endpoint deletes a specific customer's address.
 
+<aside class=warning>
+Only addresses from not <strong>approved</strong> customers can be deleted. If the customer is already approved, this endpoint will return this message:
+<br ><br >
+<i>
+"This address cannot be deleted because this customer is already approved. Try to update it"
+</i>
+</aside>
+
 #### HTTP Request
 
 **Sandbox**<br />
