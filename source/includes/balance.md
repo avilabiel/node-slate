@@ -101,10 +101,16 @@ const response = await axios.get(`/v1/network/${networkToken}/statements/company
 ```json
 {
   "success": true,
+  "pagination": {
+    "totalItems": 57,
+    "totalPages": 3,
+    "page": 1,
+    "pageSize": 20
+  },
   "statements": [
     {
-      "amount": 4.8,
-      "created_at": "2020-11-19T20:31:54.000Z",
+      "amount": 298.98,
+      "created_at": "2021-05-11T21:34:30.000Z",
       "Source": {
         "name": "Credit Card"
       },
@@ -112,15 +118,25 @@ const response = await axios.get(`/v1/network/${networkToken}/statements/company
         "name": "Michelle Silva"
       },
       "Receiver": {
-        "name": "Brydge"
+        "name": "Test Seller Company"
+      },
+      "Payment": {
+        "transaction_id": "0ed2352342664449aa6ee6c64165bcfe",
+        "transaction_status": "succeeded",
+        "description": "Ticket: { number: 123456 }",
+        "Seller": {
+          "token": "c09a6212-7369-466b-9798-d8a032845cf6",
+          "name": "Test Seller Company Inc.",
+          "business_name": "Seller Company",
+          "email": "butanta@brasilTest.com.br"
+        }
       }
-    },
-    ...
+    }
   ]
 }
 ```
 
-This endpoint gets the statements from the Network.
+Returns paginated statements from the Network.
 
 #### HTTP Request
 
@@ -135,7 +151,7 @@ This endpoint gets the statements from the Network.
 | Parameter | Default | Description                                             |
 | --------- | ------- | ------------------------------------------------------- |
 | page      | 1       | The current page that you want from the Statements List |
-| limit     | 20      | How many statements' rows you want to receive per page  |
+| pageSize  | 20      | How many statements' rows you want to receive per page  |
 
 ### Get Detailed Statements
 
@@ -158,10 +174,16 @@ const response = await axios.get(`/v1/network/${networkToken}/statements/company
 ```json
 {
   "success": true,
+  "pagination": {
+    "totalItems": 56,
+    "totalPages": 2,
+    "page": 1,
+    "pageSize": 30
+  },
   "statements": [
     {
-      "amount": 4.8,
-      "created_at": "2020-11-19T20:31:54.000Z",
+      "amount": 298.98,
+      "created_at": "2021-05-11T21:34:30.000Z",
       "Source": {
         "name": "Credit Card"
       },
@@ -169,58 +191,66 @@ const response = await axios.get(`/v1/network/${networkToken}/statements/company
         "name": "Michelle Silva"
       },
       "Receiver": {
-        "name": "Brydge"
+        "name": "AUTO BRASIL ESTACIONAMENTOS E SERVICOS"
       },
       "Payment": {
-        "amount": 25,
+        "amount": 350,
+        "description": "Pagamento de ticket: { number: 123456 }",
         "installments": 1,
-        "transaction_id": "b2d8a8f52e0847168bde818632a0aba2",
+        "transaction_id": "0ed2352342664449aa6ee6c64165bcfe",
         "transaction_status": "succeeded",
         "receivers": [
           {
             "type": "seller",
-            "token": "e84ad069-ff20-4952-bf8d-40e9da9e1d59",
-            "amount": 20,
+            "token": "c09a6212-7369-466b-9798-d8a032845cf6",
+            "amount": 300,
             "percentage": 0,
-            "finalAmount": 19.2
+            "finalAmount": 298.98,
+            "name": "BRASILTest BUTANTÃ"
           },
           {
             "type": "company_network",
             "token": "9460246d-3c0e-4318-8874-5f7acca63efb",
-            "amount": 5,
+            "amount": 50,
             "percentage": 0,
-            "finalAmount": 4.8
+            "finalAmount": 49.83,
+            "name": "Brasil Test"
           }
         ],
-        "created_at": "2020-11-19T20:31:54.000Z",
-        "updated_at": "2020-11-19T20:31:54.000Z",
+        "created_at": "2021-05-11T21:34:30.000Z",
+        "updated_at": "2021-05-11T21:34:30.000Z",
         "Customer": {
           "token": "6e790424-9ccb-46d5-a438-da224048c895",
           "first_name": "Michelle",
           "last_name": "Silva",
-          "email": "michelle.zooper@zoop.com.br"
+          "email": "michelle.brydgeer@brydge.com.br"
         },
         "Seller": {
-          "token": "e84ad069-ff20-4952-bf8d-40e9da9e1d59",
-          "name": "Brdyge LTDA",
-          "business_name": "Brydge Paulista",
-          "email": "paulista@brydge.com.br"
+          "token": "c09a6212-7369-466b-9798-d8a032845cf6",
+          "name": "AUTO BRASIL ESTACIONAMENTOS E SERVICOS",
+          "business_name": "BRASILTest BUTANTÃ",
+          "email": "butanta@brasilTest.com.br"
+        },
+        "BrydgeCreditCardSellPlan": {
+          "name": "D+1",
+          "days_to_be_available": 1
         },
         "Card": {
-          "last4_digits": "************3308",
-          "token": "b44a8cd6-dd42-491e-9f52-671ef5d1ac2e",
-          "card_brand": "MasterCard"
+          "last4_digits": "************5497",
+          "token": "7f76eca3-9922-411a-89f8-aa7973c67e70",
+          "card_brand": "Visa"
         },
-        "Subscription": null,
-        "fees": 1
+        "Subscriber": null,
+        "fees": 1.19,
+        "availableOn": "2021-05-12T21:34:30.000Z"
       }
     },
     ...
-  ]
+  ],
 }
 ```
 
-This endpoint gets the detailed statements from the Network.
+This endpoint gets the detailed statements from the Network with pagination
 
 #### HTTP Request
 
@@ -232,10 +262,11 @@ This endpoint gets the detailed statements from the Network.
 
 #### Query Parameters
 
-| Parameter | Default | Description                                             |
-| --------- | ------- | ------------------------------------------------------- |
-| page      | 1       | The current page that you want from the Statements List |
-| limit     | 20      | How many statements' rows you want to receive per page  |
+| Parameter | Default | Description                                                                       |
+| --------- | ------- | --------------------------------------------------------------------------------- |
+| page      | 1       | The current page that you want from the Statements List                           |
+| pageSize  | 20      | How many statements' rows you want to receive per page                            |
+| all       | false   | It counts all companies from network (network + seller) instead of network itself |
 
 ### Sum Payments from Last Months
 
@@ -455,10 +486,16 @@ const response = await axios.get(`/v1/network/${networkToken}/statements/seller/
 ```json
 {
   "success": true,
+  "pagination": {
+    "totalItems": 57,
+    "totalPages": 3,
+    "page": 1,
+    "pageSize": 20
+  },
   "statements": [
     {
-      "amount": 4.8,
-      "created_at": "2020-11-19T20:31:54.000Z",
+      "amount": 298.98,
+      "created_at": "2021-05-11T21:34:30.000Z",
       "Source": {
         "name": "Credit Card"
       },
@@ -466,30 +503,38 @@ const response = await axios.get(`/v1/network/${networkToken}/statements/seller/
         "name": "Michelle Silva"
       },
       "Receiver": {
-        "name": "Brydge"
+        "name": "Test Seller Company"
+      },
+      "Payment": {
+        "transaction_id": "0ed2352342664449aa6ee6c64165bcfe",
+        "transaction_status": "succeeded",
+        "description": "Ticket: { number: 123456 }",
+        "Seller": {
+          "token": "c09a6212-7369-466b-9798-d8a032845cf6",
+          "name": "Test Seller Company Inc.",
+          "business_name": "Seller Company",
+          "email": "butanta@brasilTest.com.br"
+        }
       }
     },
-    ...
-  ]
-}
 ```
 
-This endpoint gets the statements from the Seller.
+Returns paginated statements from the Seller.
 
 #### HTTP Request
 
 **Sandbox**
-`GET https://balance.brydge.com.br/v1/network/:networkToken/statements/seller/:sellerToken`
+`GET https://balance.brydge.com.br/v1/network/${networkToken}/statements/company-network`
 
 **Production**
-`GET https://balance.brydge.io/v1/network/:networkToken/statements/seller/:sellerToken`
+`GET https://balance.brydge.io/v1/network/${networkToken}/statements/company-network`
 
 #### Query Parameters
 
 | Parameter | Default | Description                                             |
 | --------- | ------- | ------------------------------------------------------- |
 | page      | 1       | The current page that you want from the Statements List |
-| limit     | 20      | How many statements' rows you want to receive per page  |
+| pageSize  | 20      | How many statements' rows you want to receive per page  |
 
 ### Get Detailed Statements
 
@@ -513,69 +558,83 @@ const response = await axios.get(`/v1/network/${networkToken}/statements/seller/
 ```json
 {
   "success": true,
+  "pagination": {
+    "totalItems": 58,
+    "totalPages": 3,
+    "page": 1,
+    "pageSize": 20
+  },
   "statements": [
     {
-      "amount": 4.8,
-      "created_at": "2020-11-19T20:31:54.000Z",
+      "amount": 31.89,
+      "created_at": "2021-04-22T18:04:55.000Z",
       "Source": {
         "name": "Credit Card"
       },
       "Sender": {
-        "name": "Michelle Silva"
+        "name": "Gabriel Ávila"
       },
       "Receiver": {
-        "name": "Brydge"
+        "name": "Brasil Test Paulista"
       },
       "Payment": {
-        "amount": 25,
+        "amount": 40,
+        "description": "Pagamento de ticket: { number: 123456 }",
         "installments": 1,
-        "transaction_id": "b2d8a8f52e0847168bde818632a0aba2",
+        "transaction_id": "f786746eac5d43c6bb2c0ad907233810",
         "transaction_status": "succeeded",
         "receivers": [
           {
             "type": "seller",
             "token": "e84ad069-ff20-4952-bf8d-40e9da9e1d59",
-            "amount": 20,
-            "percentage": 0,
-            "finalAmount": 19.2
+            "amount": 0,
+            "percentage": 80,
+            "finalAmount": 31.89,
+            "name": "Brasil Test Paulista"
           },
           {
             "type": "company_network",
             "token": "9460246d-3c0e-4318-8874-5f7acca63efb",
-            "amount": 5,
-            "percentage": 0,
-            "finalAmount": 4.8
+            "amount": 0,
+            "percentage": 20,
+            "finalAmount": 7.97,
+            "name": "Brasil Test"
           }
         ],
-        "created_at": "2020-11-19T20:31:54.000Z",
-        "updated_at": "2020-11-19T20:31:54.000Z",
+        "created_at": "2021-04-22T18:04:55.000Z",
+        "updated_at": "2021-04-22T18:04:55.000Z",
         "Customer": {
-          "token": "6e790424-9ccb-46d5-a438-da224048c895",
-          "first_name": "Michelle",
-          "last_name": "Silva",
-          "email": "michelle.zooper@zoop.com.br"
+          "token": "e3425b1e-9898-4aea-89c8-8331556bb241",
+          "first_name": "Gabriel",
+          "last_name": "Ávila",
+          "email": "avilabiel@gmail.com"
         },
         "Seller": {
           "token": "e84ad069-ff20-4952-bf8d-40e9da9e1d59",
-          "name": "Brdyge LTDA",
-          "business_name": "Brydge Paulista",
-          "email": "paulista@brydge.com.br"
+          "name": "Brasil Test Paulista LTDA",
+          "business_name": "Brasil Test Paulista",
+          "email": "paulista@brasiltest.com.br"
+        },
+        "BrydgeCreditCardSellPlan": {
+          "name": "D+1",
+          "days_to_be_available": 1
         },
         "Card": {
-          "last4_digits": "************3308",
-          "token": "b44a8cd6-dd42-491e-9f52-671ef5d1ac2e",
+          "last4_digits": "************4014",
+          "token": "cb313490-d3ad-408e-8227-b36c26e20b0a",
           "card_brand": "MasterCard"
         },
-        "Subscription": null,
-        "fees": 1
+        "Subscriber": null,
+        "fees": 0.14,
+        "availableOn": "2021-04-23T18:04:55.000Z"
       }
     },
     ...
-  ]
-}
+  ],
+},
 ```
 
-This endpoint gets the detailed statements from the Seller.
+This endpoint gets the detailed statements from the Seller with pagination.
 
 #### HTTP Request
 
@@ -590,7 +649,7 @@ This endpoint gets the detailed statements from the Seller.
 | Parameter | Default | Description                                             |
 | --------- | ------- | ------------------------------------------------------- |
 | page      | 1       | The current page that you want from the Statements List |
-| limit     | 20      | How many statements' rows you want to receive per page  |
+| pageSize  | 20      | How many statements' rows you want to receive per page  |
 
 ## Customers
 
@@ -617,9 +676,16 @@ const response = await axios.get(`/v1/network/${networkToken}/statements/custome
 ```json
 {
   "success": true,
+  "pagination": {
+    "totalItems": 57,
+    "totalPages": 3,
+    "page": 1,
+    "pageSize": 20
+  },
   "statements": [
     {
-      "amount": 10,
+      "amount": 298.98,
+      "created_at": "2021-05-11T21:34:30.000Z",
       "Source": {
         "name": "Credit Card"
       },
@@ -627,15 +693,25 @@ const response = await axios.get(`/v1/network/${networkToken}/statements/custome
         "name": "Michelle Silva"
       },
       "Receiver": {
-        "name": "Brydge Loja 1 LTDA"
+        "name": "Test Seller Company"
       },
-      "created_at": "2021-01-14T18:14:48.000Z"
+      "Payment": {
+        "transaction_id": "0ed2352342664449aa6ee6c64165bcfe",
+        "transaction_status": "succeeded",
+        "description": "Ticket: { number: 123456 }",
+        "Seller": {
+          "token": "c09a6212-7369-466b-9798-d8a032845cf6",
+          "name": "Test Seller Company Inc.",
+          "business_name": "Seller Company",
+          "email": "butanta@brasilTest.com.br"
+        }
+      }
     }
   ]
 }
 ```
 
-This endpoint gets the statements from the Customer.
+This endpoint gets the statements from the Customer with pagination.
 
 #### HTTP Request
 
@@ -650,7 +726,7 @@ This endpoint gets the statements from the Customer.
 | Parameter | Default | Description                                             |
 | --------- | ------- | ------------------------------------------------------- |
 | page      | 1       | The current page that you want from the Statements List |
-| limit     | 20      | How many statements' rows you want to receive per page  |
+| pageSize  | 20      | How many statements' rows you want to receive per page  |
 
 ### Get Detailed Statements
 
@@ -674,41 +750,83 @@ const response = await axios.get(`/v1/network/${networkToken}/statements/custome
 ```json
 {
   "success": true,
+  "pagination": {
+    "totalItems": 58,
+    "totalPages": 3,
+    "page": 1,
+    "pageSize": 20
+  },
   "statements": [
     {
-      "amount": 10,
+      "amount": 31.89,
+      "created_at": "2021-04-22T18:04:55.000Z",
       "Source": {
         "name": "Credit Card"
       },
       "Sender": {
-        "name": "Michelle Silva"
+        "name": "Gabriel Ávila"
       },
       "Receiver": {
-        "name": "Brydge Loja 1 LTDA"
+        "name": "Brasil Test Paulista"
       },
-      "created_at": "2021-01-14T18:14:48.000Z",
       "Payment": {
-        "amount": 10,
-        "transaction_id": "c3164061bf3b4d1fb05986e94e01a33a",
+        "amount": 40,
+        "description": "Pagamento de ticket: { number: 123456 }",
+        "installments": 1,
+        "transaction_id": "f786746eac5d43c6bb2c0ad907233810",
         "transaction_status": "succeeded",
         "receivers": [
           {
             "type": "seller",
-            "token": "dc89106e-312e-4fc6-a878-56d6c8d356b1",
-            "amount": 10,
-            "finalAmount": 10
+            "token": "e84ad069-ff20-4952-bf8d-40e9da9e1d59",
+            "amount": 0,
+            "percentage": 80,
+            "finalAmount": 31.89,
+            "name": "Brasil Test Paulista"
+          },
+          {
+            "type": "company_network",
+            "token": "9460246d-3c0e-4318-8874-5f7acca63efb",
+            "amount": 0,
+            "percentage": 20,
+            "finalAmount": 7.97,
+            "name": "Brasil Test"
           }
         ],
-        "fees": 0,
-        "created_at": "2021-01-14T18:14:48.000Z",
-        "updated_at": "2021-01-14T18:14:48.000Z"
+        "created_at": "2021-04-22T18:04:55.000Z",
+        "updated_at": "2021-04-22T18:04:55.000Z",
+        "Customer": {
+          "token": "e3425b1e-9898-4aea-89c8-8331556bb241",
+          "first_name": "Gabriel",
+          "last_name": "Ávila",
+          "email": "avilabiel@gmail.com"
+        },
+        "Seller": {
+          "token": "e84ad069-ff20-4952-bf8d-40e9da9e1d59",
+          "name": "Brasil Test Paulista LTDA",
+          "business_name": "Brasil Test Paulista",
+          "email": "paulista@brasiltest.com.br"
+        },
+        "BrydgeCreditCardSellPlan": {
+          "name": "D+1",
+          "days_to_be_available": 1
+        },
+        "Card": {
+          "last4_digits": "************4014",
+          "token": "cb313490-d3ad-408e-8227-b36c26e20b0a",
+          "card_brand": "MasterCard"
+        },
+        "Subscriber": null,
+        "fees": 0.14,
+        "availableOn": "2021-04-23T18:04:55.000Z"
       }
-    }
-  ]
-}
+    },
+    ...
+  ],
+},
 ```
 
-This endpoint gets the detailed statements from the Customer.
+This endpoint gets the detailed statements from the Customer with pagination.
 
 #### HTTP Request
 
@@ -723,4 +841,4 @@ This endpoint gets the detailed statements from the Customer.
 | Parameter | Default | Description                                             |
 | --------- | ------- | ------------------------------------------------------- |
 | page      | 1       | The current page that you want from the Statements List |
-| limit     | 20      | How many statements' rows you want to receive per page  |
+| pageSize  | 20      | How many statements' rows you want to receive per page  |
