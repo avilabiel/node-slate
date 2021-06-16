@@ -25,23 +25,60 @@ const response = await axios.get(`/v1/network/${networkToken}/balance/company-ne
 ```json
 {
   "success": true,
-  "balance": 0
+  "balance": {
+    "available": 10000,
+    "blocked": 0
+  }
 }
 ```
 
-This endpoint retrieves the balance from the Network.
+This endpoint retrieves the balance from the Network. Available is the amount that you can withdrawal, blocked is the amount that you will receive right after sell plan delay (E.g.: D+1 or D+30).
+
+### Get Receivables
+
+```javascript
+const networkToken = "9460246d-3c0e-4318-8874-5f7acca63efc";
+const brydgeSandboxURL = "https://balance.brydge.com.br";
+const api = axios. axios.create({
+    baseURL: brydgeSandboxURL,
+});
+
+const response = await axios.get(`/v1/network/${networkToken}/receivables/company-network`, {
+    headers: {
+      api_key: <API_KEY_FROM_YOUR_COMPANY>
+   }
+});
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "success": true,
+  "receivables": {
+    "available_in_days": 4883.34,
+    "qnt_available_in_days": 14
+  }
+}
+```
+
+Returns the how much will be available in days and how many transactions will be available right after sell play delay time (E.g.: D+1, D+30).
 
 #### HTTP Request
 
 **Sandbox**
-`GET https://balance.brydge.com.br/v1/network/${networkToken}/balance/company-network`
+`GET https://balance.brydge.com.br/v1/network/${networkToken}/receivables/company-network`
 
 **Production**
-`GET https://balance.brydge.io/v1/network/${networkToken}/balance/company-network`
+`GET https://balance.brydge.io/v1/network/${networkToken}/receivables/company-network`
 
 #### Query Parameters
 
-None.
+#### Query Parameters
+
+| Parameter | Default | Description                                                          |
+| --------- | ------- | -------------------------------------------------------------------- |
+| all       | false   | It returns receivables considering all companies (network + sellers) |
 
 ### Get Statements
 
@@ -332,11 +369,14 @@ const response = await axios.get(`/v1/network/${networkToken}/balance/seller/${s
 ```json
 {
   "success": true,
-  "balance": 0
+  "balance": {
+    "available": 10000,
+    "blocked": 0
+  }
 }
 ```
 
-This endpoint retrieves the balance from the Seller.
+This endpoint retrieves the balance from the Network. Available is the amount that you can withdrawal, blocked is the amount that you will receive right after sell plan delay (E.g.: D+1 or D+30).
 
 #### HTTP Request
 
@@ -345,6 +385,49 @@ This endpoint retrieves the balance from the Seller.
 
 **Production**
 `GET https://balance.brydge.io/v1/network/${networkToken}/balance/seller/${sellerToken}`
+
+#### Query Parameters
+
+None.
+
+### Get Receivables
+
+```javascript
+const networkToken = "9460246d-3c0e-4318-8874-5f7acca63efc";
+const sellerToken = "e3eebad7-882f-4ae3-86e0-60a679ea7e0b";
+const brydgeSandboxURL = "https://balance.brydge.com.br";
+const api = axios. axios.create({
+    baseURL: brydgeSandboxURL,
+});
+
+const response = await axios.get(`/v1/network/${networkToken}/receivables/seller/${sellerToken}`, {
+    headers: {
+      api_key: <API_KEY_FROM_YOUR_COMPANY>
+   }
+});
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "success": true,
+  "receivables": {
+    "available_in_days": 4883.34,
+    "qnt_available_in_days": 14
+  }
+}
+```
+
+Returns the how much will be available in days and how many transactions will be available right after sell play delay time (E.g.: D+1, D+30).
+
+#### HTTP Request
+
+**Sandbox**
+`GET https://balance.brydge.com.br/v1/network/${networkToken}/receivables/seller/:sellerToken`
+
+**Production**
+`GET https://balance.brydge.io/v1/network/${networkToken}/receivables/seller/:sellerToken`
 
 #### Query Parameters
 
