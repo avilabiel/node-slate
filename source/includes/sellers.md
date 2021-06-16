@@ -68,8 +68,8 @@ This endpoint creates a new seller with the basic information.
 
 #### MCCs List
 
-| ID   | Code | Category                | Description                                                                              |
-|-----|------|----------------------------|--------------------------------------------------------------------------------------|
+| ID  | Code | Category                   | Description                                                                          |
+| --- | ---- | -------------------------- | ------------------------------------------------------------------------------------ |
 | 1   | 5300 | Alimentação                | Atacado                                                                              |
 | 2   | 5422 | Alimentação                | Casas de Carne / Peixaria                                                            |
 | 3   | 5441 | Alimentação                | Docerias / Confeitarias / Rotisserie                                                 |
@@ -174,7 +174,6 @@ This endpoint creates a new seller with the basic information.
 | 102 | 5039 | Moradia                    | Lojas de Departamento                                                                |
 | 103 | 8099 | Diversos                   | Profissionais Liberais                                                               |
 | 104 | 5965 | PSP / Serviços financeiros | Outras atividades auxiliares dos serviços financeiros não especificado anteriormente |
-
 
 #### HTTP Request
 
@@ -1008,15 +1007,14 @@ Use enctype="multipart/form-data"
 It's possible to send more than one document for each Document Type
 </aside>
 
-
 #### Document Types
 
-| Type           | Description |
-| ---------------- | ---------- |
-| identificacao | Document with a picture from the Seller's Owner (RG, CPF or CNH) |
-| atividade | License (alvará), product purchase invoice (nota fiscal) or business card (cartão de visitas) |
-| residencia | Electricity, telephone or gas bill in the name of the Seller's Owner or family |
-| cnpj | CNPJ Card |
+| Type          | Description                                                                                   |
+| ------------- | --------------------------------------------------------------------------------------------- |
+| identificacao | Document with a picture from the Seller's Owner (RG, CPF or CNH)                              |
+| atividade     | License (alvará), product purchase invoice (nota fiscal) or business card (cartão de visitas) |
+| residencia    | Electricity, telephone or gas bill in the name of the Seller's Owner or family                |
+| cnpj          | CNPJ Card                                                                                     |
 
 #### HTTP Request
 
@@ -1137,11 +1135,12 @@ This process is <strong>asynchronous</strong> and it could take until <strong>3 
 </aside>
 
 #### Statuses List
-| Status | Description |
-| ----------- | ----------------------------- |
-| approved | Approval request was approved |
-| pending | KYC Team is still analyzing the request |
-| rejected | Approval request was rejected |
+
+| Status        | Description                                 |
+| ------------- | ------------------------------------------- |
+| approved      | Approval request was approved               |
+| pending       | KYC Team is still analyzing the request     |
+| rejected      | Approval request was rejected               |
 | not requested | Approval request has been not requested yet |
 
 #### HTTP Request
@@ -1316,59 +1315,3 @@ The Seller must be approved to use this endpoint.
 
 **Production**<br />
 `DELETE https://register.brydge.io/v1/network/:networkToken/seller/:sellerToken/bank-account/:bankAccountToken`
-
-## Sell Plans
-
-### Change Credit Card Sell Plan
-
-```javascript
-const networkToken = "9460246d-3c0e-4318-8874-5f7acca63efc";
-const newCreditCardSellPlan = "D+1";
-const brydgeSandboxURL = "https://register.brydge.com.br";
-const api = axios. axios.create({
-    baseURL: brydgeSandboxURL,
-});
-
-const response = await axios.put(
-  `/v1/network/${networkToken}/sells-plan`, {
-    sells_plan: newCreditCardSellPlan
-  }, {
-    headers: {
-      api_key: <API_KEY_FROM_YOUR_COMPANY>
-   }
-  });
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "success": true,
-  "message": "Sells Plan updated from the Network and all its approved Sellers",
-}
-```
-
-This endpoint changes the current sell plan for a specific Network and its approved Sellers.
-
-<aside class=warning>
-This change could take one whole day (24hs) to be applied.
-</aside>
-
-<aside class=warning>
-Only the approved companies will get this change.
-</aside>
-
-#### Sell Plans List
-
-| Type | Description | Default |
-| ------- | ---------------------- | ------------- |
-| D+1 | All credit card payments will be available on your balance on D+1 (in 1 day) | No |
-| D+30 | All credit card payments will be available on your balance on D+30 (in 30 days) | Yes |
-
-#### HTTP Request
-
-**Sandbox**
-`PUT https://register.brydge.com.br/v1/network/:networkToken/sells-plan`
-
-**Production**
-`PUT https://register.brydge.io/v1/network/:networkToken/sells-plan`
