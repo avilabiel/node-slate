@@ -78,6 +78,64 @@ Returns the sell plan and its fees for each card brand available.
 **Production**
 `PUT https://register.brydge.io/v1/network/:networkToken/sell-plan/fees`
 
+### Get Sell Plan History
+
+```javascript
+const networkToken = "9460246d-3c0e-4318-8874-5f7acca63efc";
+const sellPlan = "D+1";
+const brydgeSandboxURL = "https://register.brydge.com.br";
+const api = axios. axios.create({
+    baseURL: brydgeSandboxURL,
+});
+
+const response = await axios.get(
+  `/v1/network/${networkToken}/sell-plan/history`, {
+    headers: {
+      api_key: <API_KEY_FROM_YOUR_COMPANY>
+   }
+  });
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "success": true,
+  "history": [
+    {
+      "old_sell_plan": "D+1",
+      "new_sell_plan": "D+30",
+      "created_at": "2021-03-16T15:30:03.000Z"
+    },
+    {
+      "old_sell_plan": "D+30",
+      "new_sell_plan": "D+1",
+      "created_at": "2021-03-16T15:27:47.000Z"
+    },
+    {
+      "old_sell_plan": "D+1",
+      "new_sell_plan": "D+30",
+      "created_at": "2021-03-16T15:27:35.000Z"
+    }
+    // ...
+  ]
+}
+```
+
+Returns the current sell plan and the history of changes. The current sell plan is the `new_sell_plan` of the first item from the returned list (history[0].new_sell_plan).
+
+#### Query Parameters
+
+None.
+
+#### HTTP Request
+
+**Sandbox**
+`PUT https://register.brydge.com.br/v1/network/:networkToken/sell-plan/history`
+
+**Production**
+`PUT https://register.brydge.io/v1/network/:networkToken/sell-plan/history`
+
 ### Update Sell Plan
 
 ```javascript
@@ -89,8 +147,8 @@ const api = axios. axios.create({
 });
 
 const response = await axios.put(
-  `/v1/network/${networkToken}/sells-plan`, {
-    sells_plan: newCreditCardSellPlan
+  `/v1/network/${networkToken}/sell-plan`, {
+    sell_plan: newCreditCardSellPlan
   }, {
     headers: {
       api_key: <API_KEY_FROM_YOUR_COMPANY>
@@ -126,7 +184,7 @@ Only the approved companies will get this change.
 #### HTTP Request
 
 **Sandbox**
-`PUT https://register.brydge.com.br/v1/network/:networkToken/sells-plan`
+`PUT https://register.brydge.com.br/v1/network/:networkToken/sell-plan`
 
 **Production**
-`PUT https://register.brydge.io/v1/network/:networkToken/sells-plan`
+`PUT https://register.brydge.io/v1/network/:networkToken/sell-plan`
