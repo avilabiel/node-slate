@@ -1315,3 +1315,66 @@ The Seller must be approved to use this endpoint.
 
 **Production**<br />
 `DELETE https://register.brydge.io/v1/network/:networkToken/seller/:sellerToken/bank-account/:bankAccountToken`
+
+## Authentication
+
+It's possible to authenticate your sellers.
+
+### Authenticate User
+
+```javascript
+const username = "test@brydge.com.br";
+const password = "123default";
+const brydgeSandboxURL = "https://register.brydge.com.br";
+const api = axios. axios.create({
+    baseURL: brydgeSandboxURL,
+});
+
+const response = await axios.get(
+  `/v1/user/authenticate`, {
+	    username,
+	    password
+    }, {
+    headers: {
+      api_key: <API_KEY_FROM_YOUR_COMPANY>
+   }
+  });
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "success": true,
+  "user": {
+    "name": "Brasil Park",
+    "email": "test@brydge.com.br",
+    "type": "seller",
+    "token": "af8c6f4b-3452-4301-9668-5c44166123f4",
+    "companyNetworkToken": "9460246d-3c0e-4318-8874-5f7acca63efb"
+  }
+}
+```
+
+If the username and password matches, it returns the current user, user type, its token and its company network token.
+
+When the user is not found, the response will be:
+
+```json
+{
+  "success": false,
+  "message": "User not found"
+}
+```
+
+#### Query Parameters
+
+None.
+
+#### HTTP Request
+
+**Sandbox**
+`GET https://register.brydge.com.br/v1/user/authenticate`
+
+**Production**
+`GET https://register.brydge.io/v1/user/authenticate`
