@@ -188,10 +188,10 @@ This endpoint gets the detailed statements from the Network.
 #### HTTP Request
 
 **Sandbox**<br />
-`GET https://balance.brydge.com.br/v1/network/${networkToken}/statements/company-network`
+`GET https://balance.brydge.com.br/v1/network/${networkToken}/statements/company-network/detailed`
 
 **Production**<br />
-`GET https://balance.brydge.io/v1/network/${networkToken}/statements/company-network`
+`GET https://balance.brydge.io/v1/network/${networkToken}/statements/company-network/detailed`
 
 #### Query Parameters
 
@@ -287,12 +287,12 @@ This endpoint summarizes the payments made in a Network on this period.
 
 #### Periods List
 
-| Type | Description |
-| ------ | ----------------- |
-| daily | It summarizes all payments made on this current day |
-| weekly | It summarizes all payments made on this current week |
+| Type    | Description                                           |
+| ------- | ----------------------------------------------------- |
+| daily   | It summarizes all payments made on this current day   |
+| weekly  | It summarizes all payments made on this current week  |
 | monthly | It summarizes all payments made on this current month |
-| total | It summarizes all payments made all the time |
+| total   | It summarizes all payments made all the time          |
 
 #### HTTP Request
 
