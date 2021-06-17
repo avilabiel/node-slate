@@ -1,24 +1,25 @@
 title: Brydge - API Reference
 
 language_tabs:
-   - javascript
+  - javascript
 
 toc_footers:
-   - <a href=https://www.npmjs.com/package/node-slate>Documentation powered by Slate</a>
+  - <a href=https://www.npmjs.com/package/node-slate>Documentation powered by Slate</a>
 
 includes:
-   - main
-   - authentication
-   - portal
-   - environments
-   - customers
-   - sellers
-   - payments
-   - subscriptions
-   - balance
-   - banks
-   - withdrawals
-   - _errors
+  - main
+  - authentication
+  - portal
+  - environments
+  - customers
+  - sellers
+  - networks
+  - payments
+  - subscriptions
+  - balance
+  - banks
+  - withdrawals
+  - _errors
 
 search: true
 
