@@ -28,6 +28,7 @@ const response = await axios.post(`/v1/network/${networkToken}/seller`, {
 		cnpj:"90787484000153",
 		name:"Brydge IO LTDA",
 	  email:"teste@brydge.io",
+    password: "123mudar",
 		business_name: "Brydge IO",
 		mcc: "26",
 		type:"business",
@@ -64,7 +65,7 @@ const response = await axios.post(`/v1/network/${networkToken}/seller`, {
 }
 ```
 
-This endpoint creates a new seller with the basic information.
+This endpoint creates a new seller with the basic information. Right after, this you can access the Portal with Seller's credentials.
 
 #### MCCs List
 
