@@ -56,20 +56,22 @@ This endpoint is very useful when the Network or Seller does want to charge the 
 `GET https://cashin.brydge.io/v1/network/:networkToken/payment/credit-card/installments/plan`
 
 #### Query Parameters
-| Param | Description | Type |
-| ------- | ------------------ | ---------- |
-| amount | Amount that you want to see the final price with interest | Float |
-| installments | Quantity of installments | Number |
-| card | Card brand that you want to check (since we have different interest for each Card Brand) | String |
+
+| Param        | Description                                                                              | Type   |
+| ------------ | ---------------------------------------------------------------------------------------- | ------ |
+| amount       | Amount that you want to see the final price with interest                                | Float  |
+| installments | Quantity of installments                                                                 | Number |
+| card         | Card brand that you want to check (since we have different interest for each Card Brand) | String |
 
 #### Card Brand's List
-| Value |
-| ---------- |
-| Mastercard |
-| Visa |
-| Elo |
+
+| Value            |
+| ---------------- |
+| Mastercard       |
+| Visa             |
+| Elo              |
 | American Express |
-| Hipercard |
+| Hipercard        |
 
 ### Payment by Tokens
 
@@ -134,7 +136,7 @@ const response = await axios.post(
     ],
     "Subscription": null,
     "updatedAt": "2020-11-26T15:41:48.966Z",
-    "createdAt": "2020-11-26T15:41:48.966Z",
+    "createdAt": "2020-11-26T15:41:48.966Z"
   }
 }
 ```
@@ -165,29 +167,29 @@ const api = axios. axios.create({
 const response = await axios.post(
     `/v1/network/${networkToken}/payment/checkout`, {
     Payment: {
-		Card: {
-		  holder_name: "Testing Name",
-		  expiration_month "02",
-		  expiration_year: "2028",
-		  card_numbe: "123412341234",
-		  security_code: "022",
-		},
-		amount: 25,
-		currency: "BRL",
-		description: "Pagamento de ticket: { number: 123456 }"
- 	},
-	Customer: {
-    cpf: "41235235214",
-    first_name: "Rafael",
-    last_name: "Silva",
-    email: "teste@gmail.com",
-    birthdate: "1985-03-21T00:00:00.000Z",
-    phone: {
-        area_code: 13,
-        country_code:55,
-        number: "2583564"
+      Card: {
+        holder_name: "Testing Name",
+        expiration_month "02",
+        expiration_year: "2028",
+        card_numbe: "123412341234",
+        security_code: "022",
+      },
+      amount: 25,
+      currency: "BRL",
+      description: "Pagamento de ticket: { number: 123456 }"
     },
-    address: {
+    Customer: {
+      cpf: "41235235214",
+      first_name: "Rafael",
+      last_name: "Silva",
+      email: "teste@gmail.com",
+      birthdate: "1985-03-21T00:00:00.000Z",
+      phone: {
+        area_code: 13,
+        country_code: 55,
+        number: "2583564"
+      },
+      address: {
         line1: "Av Americas, 500",
         line2: "Citta América",
         neighborhood: "Barra da Tijuca",
@@ -195,11 +197,11 @@ const response = await axios.post(
         state: "RJ",
         zip_code: "22845046",
         country_code: "BR"
-    }
-  	},
-  	Seller: {
-		  token: "e84ad069-ff20-4952-bf8d-40e9da9e1d59"
-	  },
+      }
+    },
+    Seller: {
+      token: "e84ad069-ff20-4952-bf8d-40e9da9e1d59"
+    },
 }, {
     headers: {
       api_key: <API_KEY_FROM_YOUR_COMPANY>
@@ -247,6 +249,10 @@ This endpoint makes a payment with a Credit Card and it doesn't require a Custom
 
 <aside class=notice>
 Don't forget that we need a Seller Token. That means that the Seller that will receive the payment should have passed through our KYC process, especially to avoid legal problems and money laundry.
+</aside>
+
+<aside class=warning>
+This endpoint only works with a Seller fully registered and a Customer fully registered
 </aside>
 
 #### HTTP Request
@@ -650,6 +656,89 @@ You can create subscriptions. To do that, it's pretty easy! When we set a subscr
 
 **Production**
 `POST https://cashin.brydge.io/v1/network/:networkToken/payment/credit-card`
+
+#### Query Parameters
+
+None.
+
+## Billet
+
+### Checkout Payment
+
+```javascript
+const networkToken = "9460246d-3c0e-4318-8874-5f7acca63efc";
+const brydgeSandboxURL = "https://cashin.brydge.com.br";
+const api = axios. axios.create({
+    baseURL: brydgeSandboxURL,
+});
+
+const response = await axios.post(
+    `/v1/network/${networkToken}/payment/checkout/billet`, {
+    Payment: {
+      amount: 200,
+      currency: "BRL",
+      description: "teste"
+    },
+    Customer: {
+      cpf: "38482093061",
+      first_name: "Diogo",
+      last_name: "Rocha",
+      email: "analuleticiaandreiasilva_@eletroaquila.net",
+      birthdate: "1992-12-12T00:00:00.000Z",
+      phone: {
+        area_code: 13,
+        country_code: 55,
+        number: "987072242"
+      },
+      address: {
+        line1: "Rua Comendador Bastos, 358",
+        line2: "Citta América",
+        neighborhood: "Jardim Seminário",
+        city: "Campo Grande",
+        state: "MS",
+        zip_code: "79118550",
+        country_code: "BR"
+      }
+    },
+    Seller: {
+      token: "e84ad069-ff20-4952-bf8d-40e9da9e1d59"
+    }
+}, {
+    headers: {
+      api_key: <API_KEY_FROM_YOUR_COMPANY>
+   }
+});
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "status": true,
+  "billet": {
+    "barcode": "34191091641440906893031339210002387620000020000",
+    "url": "https://api-boleto-production.s3.amazonaws.com/9b6a5d460fab42549c4b3c9838863793/f570d51b3064451fbe7f453906e67924/6155c0cf442e4c080b290d61.html"
+  }
+}
+```
+
+This endpoint makes a payment with a Billet
+
+<aside class=notice>
+Don't forget that we need a Seller Token. That means that the Seller that will receive the payment should have passed through our KYC process, especially to avoid legal problems and money laundry.
+</aside>
+
+<aside class=warning>
+This endpoint only works with a Seller fully registered and a Customer fully registered
+</aside>
+
+#### HTTP Request
+
+**Sandbox**
+`POST https://cashin.brydge.com.br/v1/network/:networkToken/payment/checkout/billet`
+
+**Production**
+`POST https://cashin.brydge.io/v1/network/:networkToken/payment/checkout/billet`
 
 #### Query Parameters
 
