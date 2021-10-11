@@ -580,20 +580,22 @@ const api = axios. axios.create({
 const response = await axios.post(
     `/v1/network/${networkToken}/payment/credit-card`, {
     Payment: {
-		Card: {
-		    token: "b44a8cd6-dd42-491e-9f52-671ef5d1ac2e"
-		},
-		amount: 25,
-		currency: "BRL",
-		description: "Pagamento de ticket: { number: 123456 }",
-        subscription: "Weekly"
- 	},
-	Customer: {
-		token: "6e790424-9ccb-46d5-a438-da224048c895"
-  	},
-  	Seller: {
-		token: "e84ad069-ff20-4952-bf8d-40e9da9e1d59"
-	},
+      Card: {
+        token: "b44a8cd6-dd42-491e-9f52-671ef5d1ac2e"
+      },
+      amount: 25,
+      currency: "BRL",
+      description: "Pagamento de ticket: { number: 123456 }",
+      Subscription: {
+        token: "3694df9d-aca0-46f7-a373-10ad3ee7345e"
+      }
+    },
+    Customer: {
+      token: "6e790424-9ccb-46d5-a438-da224048c895"
+    },
+    Seller: {
+      token: "e84ad069-ff20-4952-bf8d-40e9da9e1d59"
+    },
 }, {
     headers: {
       api_key: <API_KEY_FROM_YOUR_COMPANY>
@@ -610,11 +612,6 @@ const response = await axios.post(
     "amount": 25,
     "fees": 1,
     "installments": 1,
-    "Subscription": {
-      "token": "4820807c-d0ac-4176-ac08-dc8ea16c6e3f",
-      "description": "Weekly",
-      "next_billing_date": "2021-01-25"
-    },
     "transaction_id": "4a9b7105acb64761b7167b085372451e",
     "transaction_status": "succeeded",
     "description": "Pagamento de ticket: { number: 123456 }",
@@ -635,6 +632,20 @@ const response = await axios.post(
         "finalAmount": 4.8
       }
     ],
+    "Subscriber": {
+      "token": "2fa5bd1d-8c22-4c03-b598-dc20463e4efa",
+      "first_billing_date": "2021-10-01T19:24:42.000Z",
+      "next_billing_date": "2021-12-01T19:24:42.000Z",
+      "last_billing_date": "2021-10-01T19:41:27.000Z",
+      "previous_payments": 1,
+      "last_payment_amount": 25,
+      "Subscription": {
+        "token": "3694df9d-aca0-46f7-a373-10ad3ee7345e",
+        "name": "Teste",
+        "recurrence": "Monthly",
+        "amount": 100
+      }
+    },
     "updatedAt": "2020-11-26T15:41:48.966Z",
     "createdAt": "2020-11-26T15:41:48.966Z"
   }
